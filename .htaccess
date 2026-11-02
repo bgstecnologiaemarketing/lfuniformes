@@ -1,5 +1,11 @@
 # Usado apenas em servidores Apache (hospedagens cPanel/Hostinger/Locaweb etc.)
 
+# Bloqueia arquivos internos do Git e de configuração (o deploy da Hostinger coloca a pasta .git aqui)
+RedirectMatch 404 /\.git
+<FilesMatch "^\.(gitignore|gitattributes|htaccess)$">
+  Require all denied
+</FilesMatch>
+
 # Força HTTPS e remove www
 RewriteEngine On
 RewriteCond %{HTTPS} off [OR]
