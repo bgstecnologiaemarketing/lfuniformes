@@ -2,6 +2,13 @@
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8">
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PGRMXWQ');</script>
+  <!-- End Google Tag Manager -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Página não encontrada | LF Uniformes</title>
   <meta name="robots" content="noindex">
@@ -141,6 +148,92 @@ p { margin: 0 0 1em; max-width: 62ch; }
 .pecas { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 6px 8px; }
 .pecas li { font-size: .9rem; padding: 4px 10px; border: 1px solid var(--linha); border-radius: 999px; }
 
+/* Ficha técnica nas linhas e bloco de tecidos */
+.ficha { margin-top: 14px; font-size: .92rem; color: var(--tinta-2); }
+.tecidos { margin-top: 56px; padding: 28px 32px; background: var(--papel); border-radius: var(--raio); border-left: 4px solid var(--fita); }
+.tecidos h3 { margin-bottom: 16px; }
+.tecidos dl { margin: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.tecidos dt { font-weight: 700; color: var(--marinho); }
+.tecidos dd { margin: 4px 0 0; color: var(--tinta-2); }
+.rodape__cnpj { font-size: .85rem; opacity: .8; margin-top: 12px; }
+@media (max-width: 760px) { .tecidos dl { grid-template-columns: 1fr; } .tecidos { padding: 22px; } }
+
+/* Páginas internas (segmentos) */
+.migalhas { max-width: var(--larg); margin: 24px auto 0; padding: 0 24px; font-size: .9rem; color: var(--tinta-2); }
+.migalhas ol { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; }
+.migalhas li + li::before { content: "/"; margin-right: 6px; color: var(--linha); }
+.migalhas a { color: var(--tinta-2); }
+.hero--interna { padding-top: 32px; }
+.resposta { font-size: 1.2rem; color: var(--tinta); max-width: 58ch; }
+.tabela-areas { width: 100%; border-collapse: collapse; margin-top: 8px; }
+.tabela-areas th, .tabela-areas td { text-align: left; vertical-align: top; padding: 16px 16px 16px 0; border-bottom: 1px solid var(--linha); }
+.tabela-areas th { font-size: .9rem; color: var(--tinta-2); font-weight: 600; border-bottom: 2px solid var(--marinho); }
+.tabela-areas td:first-child { font-weight: 700; color: var(--marinho); width: 30%; }
+.motivos { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px 48px; }
+.motivos p { color: var(--tinta-2); }
+.aviso { margin-top: 32px; padding: 18px 22px; background: var(--papel); border-left: 4px solid var(--fita); border-radius: var(--raio); }
+.aviso p { margin: 0; }
+.outros-segmentos { display: flex; flex-wrap: wrap; gap: 10px; list-style: none; padding: 0; margin: 0; }
+.outros-segmentos a { display: inline-block; padding: 10px 16px; border: 1px solid var(--linha); border-radius: 999px; text-decoration: none; font-weight: 600; }
+.outros-segmentos a:hover { border-color: var(--marinho); }
+.segmentos__lista a { text-decoration: none; color: inherit; display: flex; justify-content: space-between; }
+.segmentos__lista a::after { content: "›"; color: var(--fita); font-size: 1.4rem; line-height: 1; }
+.segmentos__lista a:hover { color: var(--fita); }
+@media (max-width: 760px) {
+  .motivos { grid-template-columns: 1fr; }
+  .migalhas { padding: 0 20px; }
+  .tabela-areas, .tabela-areas tbody, .tabela-areas tr, .tabela-areas td { display: block; width: 100% !important; }
+  .tabela-areas thead { display: none; }
+  .tabela-areas td { padding: 4px 0; border: 0; }
+  .tabela-areas tr { padding: 14px 0; border-bottom: 1px solid var(--linha); }
+}
+
+/* Blog */
+.blog-cab { max-width: var(--larg); margin: 0 auto; padding: 40px 24px 8px; }
+.blog-cab p { font-size: 1.15rem; color: var(--tinta-2); }
+.categorias { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 24px 0 0; }
+.categorias a { display: inline-block; padding: 8px 14px; border: 1px solid var(--linha); border-radius: 999px; text-decoration: none; font-weight: 600; font-size: .95rem; }
+.categorias a:hover, .categorias a[aria-current] { border-color: var(--marinho); background: var(--marinho); color: var(--branco); }
+.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; list-style: none; padding: 0; margin: 0; }
+.card { border: 1px solid var(--linha); border-radius: var(--raio); padding: 24px; display: flex; flex-direction: column; gap: 10px; background: var(--branco); }
+.card__cat { font-size: .85rem; font-weight: 700; color: var(--fita-escuro); }
+.card h3 { margin: 0; font-size: 1.25rem; }
+.card h3 a { text-decoration: none; }
+.card h3 a:hover { text-decoration: underline; text-decoration-color: var(--fita); }
+.card p { color: var(--tinta-2); font-size: .98rem; margin: 0; }
+.card time { font-size: .85rem; color: var(--tinta-2); margin-top: auto; }
+.blog-vazio { color: var(--tinta-2); }
+
+.artigo { max-width: 760px; margin: 0 auto; padding: 32px 24px 24px; }
+.artigo__cat { font-weight: 700; color: var(--fita-escuro); text-decoration: none; }
+.artigo h1 { font-size: clamp(2rem, 4vw, 3rem); margin-top: 10px; }
+.artigo__meta { color: var(--tinta-2); font-size: .95rem; margin-bottom: 24px; }
+.artigo__resumo { font-size: 1.2rem; line-height: 1.55; padding: 20px 24px; background: var(--papel); border-left: 4px solid var(--fita); border-radius: var(--raio); margin: 0 0 32px; max-width: none; }
+.artigo__corpo { font-size: 1.1rem; line-height: 1.7; }
+.artigo__corpo p, .artigo__corpo li { max-width: 68ch; }
+.artigo__corpo h2 { font-size: 1.75rem; margin-top: 48px; }
+.artigo__corpo h3 { margin-top: 32px; }
+.artigo__corpo ul, .artigo__corpo ol { padding-left: 1.3em; margin: 0 0 1em; }
+.artigo__corpo li { margin-bottom: 6px; }
+.artigo__corpo a { text-decoration-color: var(--fita-escuro); text-underline-offset: 3px; text-decoration-thickness: 2px; font-weight: 600; }
+.artigo__corpo table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 1rem; }
+.artigo__corpo th, .artigo__corpo td { text-align: left; vertical-align: top; padding: 12px 12px 12px 0; border-bottom: 1px solid var(--linha); }
+.artigo__corpo th { border-bottom: 2px solid var(--marinho); font-size: .92rem; }
+.tabela-rolagem { overflow-x: auto; }
+.artigo .faq { margin-top: 8px; }
+
+.material { margin: 40px 0; padding: 28px; background: var(--marinho); color: var(--branco); border-radius: var(--raio); }
+.material h2 { margin: 0 0 8px; font-size: 1.5rem; color: var(--branco); }
+.material > p { color: #c6cfdd; margin-bottom: 18px; }
+.material .form { padding: 0; background: none; }
+.material__ok { font-weight: 600; color: var(--fita); margin: 0; }
+
+.artigo-cta { max-width: 760px; margin: 16px auto 0; padding: 0 24px 72px; }
+.artigo-cta > div { border-top: 2px solid var(--marinho); padding-top: 28px; }
+.relacionados { max-width: var(--larg); margin: 0 auto; padding: 0 24px 96px; }
+@media (max-width: 980px) { .cards { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 760px) { .cards { grid-template-columns: 1fr; } .material { padding: 22px; } .blog-cab { padding: 28px 20px 0; } }
+
 /* Segmentos */
 .segmentos { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
 .segmentos p { color: #c6cfdd; font-size: 1.15rem; }
@@ -256,6 +349,9 @@ img.sem-img { visibility: hidden; }
 </style>
 </head>
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PGRMXWQ" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
   <main class="secao">
     <h1>Esta página não existe mais</h1>
     <p>O endereço pode ter mudado com o novo site. Volte para a página inicial ou fale direto com um consultor.</p>

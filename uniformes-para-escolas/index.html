@@ -2,6 +2,13 @@
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8">
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PGRMXWQ');</script>
+  <!-- End Google Tag Manager -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Uniformes para Colaboradores de Escolas e Colégios | LF Uniformes</title>
   <meta name="description" content="Uniformes para professores, coordenação, secretaria, portaria, cantina e limpeza de escolas e colégios. Bordado com o brasão da escola e prazo médio de 30 dias úteis.">
@@ -194,6 +201,52 @@ p { margin: 0 0 1em; max-width: 62ch; }
   .tabela-areas td { padding: 4px 0; border: 0; }
   .tabela-areas tr { padding: 14px 0; border-bottom: 1px solid var(--linha); }
 }
+
+/* Blog */
+.blog-cab { max-width: var(--larg); margin: 0 auto; padding: 40px 24px 8px; }
+.blog-cab p { font-size: 1.15rem; color: var(--tinta-2); }
+.categorias { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 24px 0 0; }
+.categorias a { display: inline-block; padding: 8px 14px; border: 1px solid var(--linha); border-radius: 999px; text-decoration: none; font-weight: 600; font-size: .95rem; }
+.categorias a:hover, .categorias a[aria-current] { border-color: var(--marinho); background: var(--marinho); color: var(--branco); }
+.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; list-style: none; padding: 0; margin: 0; }
+.card { border: 1px solid var(--linha); border-radius: var(--raio); padding: 24px; display: flex; flex-direction: column; gap: 10px; background: var(--branco); }
+.card__cat { font-size: .85rem; font-weight: 700; color: var(--fita-escuro); }
+.card h3 { margin: 0; font-size: 1.25rem; }
+.card h3 a { text-decoration: none; }
+.card h3 a:hover { text-decoration: underline; text-decoration-color: var(--fita); }
+.card p { color: var(--tinta-2); font-size: .98rem; margin: 0; }
+.card time { font-size: .85rem; color: var(--tinta-2); margin-top: auto; }
+.blog-vazio { color: var(--tinta-2); }
+
+.artigo { max-width: 760px; margin: 0 auto; padding: 32px 24px 24px; }
+.artigo__cat { font-weight: 700; color: var(--fita-escuro); text-decoration: none; }
+.artigo h1 { font-size: clamp(2rem, 4vw, 3rem); margin-top: 10px; }
+.artigo__meta { color: var(--tinta-2); font-size: .95rem; margin-bottom: 24px; }
+.artigo__resumo { font-size: 1.2rem; line-height: 1.55; padding: 20px 24px; background: var(--papel); border-left: 4px solid var(--fita); border-radius: var(--raio); margin: 0 0 32px; max-width: none; }
+.artigo__corpo { font-size: 1.1rem; line-height: 1.7; }
+.artigo__corpo p, .artigo__corpo li { max-width: 68ch; }
+.artigo__corpo h2 { font-size: 1.75rem; margin-top: 48px; }
+.artigo__corpo h3 { margin-top: 32px; }
+.artigo__corpo ul, .artigo__corpo ol { padding-left: 1.3em; margin: 0 0 1em; }
+.artigo__corpo li { margin-bottom: 6px; }
+.artigo__corpo a { text-decoration-color: var(--fita-escuro); text-underline-offset: 3px; text-decoration-thickness: 2px; font-weight: 600; }
+.artigo__corpo table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 1rem; }
+.artigo__corpo th, .artigo__corpo td { text-align: left; vertical-align: top; padding: 12px 12px 12px 0; border-bottom: 1px solid var(--linha); }
+.artigo__corpo th { border-bottom: 2px solid var(--marinho); font-size: .92rem; }
+.tabela-rolagem { overflow-x: auto; }
+.artigo .faq { margin-top: 8px; }
+
+.material { margin: 40px 0; padding: 28px; background: var(--marinho); color: var(--branco); border-radius: var(--raio); }
+.material h2 { margin: 0 0 8px; font-size: 1.5rem; color: var(--branco); }
+.material > p { color: #c6cfdd; margin-bottom: 18px; }
+.material .form { padding: 0; background: none; }
+.material__ok { font-weight: 600; color: var(--fita); margin: 0; }
+
+.artigo-cta { max-width: 760px; margin: 16px auto 0; padding: 0 24px 72px; }
+.artigo-cta > div { border-top: 2px solid var(--marinho); padding-top: 28px; }
+.relacionados { max-width: var(--larg); margin: 0 auto; padding: 0 24px 96px; }
+@media (max-width: 980px) { .cards { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 760px) { .cards { grid-template-columns: 1fr; } .material { padding: 22px; } .blog-cab { padding: 28px 20px 0; } }
 
 /* Segmentos */
 .segmentos { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
@@ -427,6 +480,9 @@ img.sem-img { visibility: hidden; }
   </script>
 </head>
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PGRMXWQ" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
   <a class="skip" href="#conteudo">Pular para o conteúdo</a>
   <header class="topo">
     <div class="topo__in">
@@ -675,6 +731,42 @@ img.sem-img { visibility: hidden; }
   }
   document.querySelectorAll('[data-wa]').forEach(function (a) {
     a.addEventListener('click', function () { evento('clique_whatsapp', { posicao: a.getAttribute('data-wa') }); });
+  });
+
+  // Formulários de materiais (blog): envia para o webhook (n8n/CRM), se configurado,
+  // ou abre o WhatsApp com o pedido do material.
+  var LEAD_WEBHOOK = ''; // ex.: 'https://seu-n8n/webhook/lf-leads'
+  document.querySelectorAll('form.form-material').forEach(function (fm) {
+    fm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var d = new FormData(fm);
+      var nome = (d.get('nome') || '').trim(), empresa = (d.get('empresa') || '').trim(), zap = (d.get('whatsapp') || '').trim();
+      var err = fm.querySelector('.form__erro');
+      if (!nome || !empresa || zap.replace(/\D/g, '').length < 10) {
+        err.textContent = 'Preencha nome, empresa e um WhatsApp com DDD para receber o material.';
+        err.hidden = false;
+        return;
+      }
+      err.hidden = true;
+      var dados = {
+        nome: nome, empresa: empresa, whatsapp: zap, email: (d.get('email') || '').trim(),
+        material: fm.getAttribute('data-material'), material_titulo: fm.getAttribute('data-material-titulo'),
+        artigo: location.pathname, origem: origem()
+      };
+      evento('download_material', { material: dados.material, artigo: dados.artigo });
+      var texto = 'Oi, vim pelo blog da LF! Quero receber o material: ' + dados.material_titulo + '.\n\nNome: ' + nome + '\nEmpresa: ' + empresa + (dados.email ? '\nE-mail: ' + dados.email : '') + '\nArtigo: ' + location.pathname;
+      function concluir() {
+        fm.innerHTML = '<p class="material__ok" role="status">Pronto! Vamos enviar o material no seu WhatsApp.</p>';
+      }
+      if (LEAD_WEBHOOK) {
+        fetch(LEAD_WEBHOOK, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(dados) })
+          .then(concluir)
+          .catch(function () { window.open('https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(texto), '_blank', 'noopener'); concluir(); });
+      } else {
+        window.open('https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(texto), '_blank', 'noopener');
+        concluir();
+      }
+    });
   });
 
   // Formulário de orçamento: monta a mensagem e abre WhatsApp ou e-mail
