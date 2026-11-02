@@ -672,7 +672,6 @@ img.sem-img { visibility: hidden; }
           <p class="form__erro" id="form-erro" role="alert" hidden></p>
           <div class="form__acoes">
             <button type="submit" class="btn btn--claro" data-canal="whatsapp">Enviar pelo WhatsApp</button>
-            <button type="submit" class="btn btn--linha-clara" data-canal="email">Enviar por e-mail</button>
           </div>
         </form>
       </div>
@@ -717,7 +716,6 @@ img.sem-img { visibility: hidden; }
 // LF Uniformes — scripts básicos
 (function () {
   var WHATSAPP = '5541991697834';
-  var EMAIL = 'comercial@lfuniformes.com.br';
 
   // Ano do rodapé
   var ano = document.getElementById('ano');
@@ -820,9 +818,6 @@ img.sem-img { visibility: hidden; }
   if (!form) return;
   var erro = document.getElementById('form-erro');
   var canal = 'whatsapp';
-  form.querySelectorAll('button[data-canal]').forEach(function (b) {
-    b.addEventListener('click', function () { canal = b.getAttribute('data-canal'); });
-  });
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
@@ -853,11 +848,7 @@ img.sem-img { visibility: hidden; }
 
     evento('envio_orcamento', { canal: canal, colaboradores: d.get('qtd') || '', segmento: form.getAttribute('data-segmento') || 'home' });
 
-    if (canal === 'email') {
-      location.href = 'mailto:' + EMAIL + '?subject=' + encodeURIComponent('Orçamento de uniformes – ' + empresa) + '&body=' + encodeURIComponent(texto);
-    } else {
-      window.open('https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(texto), '_blank', 'noopener');
-    }
+    window.open('https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(texto), '_blank', 'noopener');
   });
 })();
 
