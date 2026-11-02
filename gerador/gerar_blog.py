@@ -123,6 +123,13 @@ def head(titulo, descricao, url, ld, extra=""):
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8">
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){{w[l]=w[l]||[];w[l].push({{'gtm.start':
+  new Date().getTime(),event:'gtm.js'}});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  }})(window,document,'script','dataLayer','GTM-PGRMXWQ');</script>
+  <!-- End Google Tag Manager -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{html.escape(titulo)}</title>
   <meta name="description" content="{html.escape(descricao)}">
@@ -250,6 +257,9 @@ def gerar_artigo(meta, corpo, todos):
 
     pagina = head(meta["meta_title"], meta["meta_description"], url, {"@context": "https://schema.org", "@graph": grafo}, extra) + f"""
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PGRMXWQ" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
 {CABECALHO}
 
   <nav class="migalhas" aria-label="Você está em">
@@ -329,6 +339,9 @@ def gerar_indice(todos):
         url, {"@context": "https://schema.org", "@graph": grafo},
     ) + f"""
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PGRMXWQ" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
 {CABECALHO}
 
   <nav class="migalhas" aria-label="Você está em">
