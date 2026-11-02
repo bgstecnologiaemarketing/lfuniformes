@@ -1,7 +1,6 @@
 // LF Uniformes — scripts básicos
 (function () {
   var WHATSAPP = '5541991697834';
-  var EMAIL = 'comercial@lfuniformes.com.br';
 
   // Ano do rodapé
   var ano = document.getElementById('ano');
@@ -104,9 +103,6 @@
   if (!form) return;
   var erro = document.getElementById('form-erro');
   var canal = 'whatsapp';
-  form.querySelectorAll('button[data-canal]').forEach(function (b) {
-    b.addEventListener('click', function () { canal = b.getAttribute('data-canal'); });
-  });
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
@@ -137,10 +133,6 @@
 
     evento('envio_orcamento', { canal: canal, colaboradores: d.get('qtd') || '', segmento: form.getAttribute('data-segmento') || 'home' });
 
-    if (canal === 'email') {
-      location.href = 'mailto:' + EMAIL + '?subject=' + encodeURIComponent('Orçamento de uniformes – ' + empresa) + '&body=' + encodeURIComponent(texto);
-    } else {
-      window.open('https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(texto), '_blank', 'noopener');
-    }
+    window.open('https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(texto), '_blank', 'noopener');
   });
 })();

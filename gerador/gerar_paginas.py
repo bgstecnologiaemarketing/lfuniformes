@@ -98,7 +98,6 @@ FORM = """    <section id="orcamento" class="secao secao--escura">
           <p class="form__erro" id="form-erro" role="alert" hidden></p>
           <div class="form__acoes">
             <button type="submit" class="btn btn--claro" data-canal="whatsapp">Enviar pelo WhatsApp</button>
-            <button type="submit" class="btn btn--linha-clara" data-canal="email">Enviar por e-mail</button>
           </div>
         </form>
       </div>
