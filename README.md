@@ -22,3 +22,9 @@ nome, empresa, WhatsApp, e-mail, material e artigo. Vazio = abre o WhatsApp da L
 
 - `main` — site publicado. A Hostinger faz o deploy desta branch em `public_html`. Não editar à mão.
 - `fonte` — este código-fonte. Alterações são feitas aqui, o site é gerado em `publicar/` e o conteúdo vai para a `main`.
+
+## Build
+
+    python3 gerador/build.py publicar
+
+Gera a pasta `publicar/` completa (home, 404, segmentos, privacidade, blog, sitemap e arquivos estáticos). O conteúdo dela é o que vai para a branch `main`.

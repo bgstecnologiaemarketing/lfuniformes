@@ -59,6 +59,8 @@ RODAPE = """  <footer class="rodape">
         <a href="/uniformes-para-clinicas/">Uniformes para clínicas</a>
         <a href="/uniformes-para-escolas/">Uniformes para escolas</a>
         <a href="/#perguntas">Perguntas frequentes</a>
+        <a href="/privacidade/">Política de Privacidade</a>
+        <a href="#" data-reabrir-cookies>Preferências de cookies</a>
       </nav>
     </div>
     <p class="rodape__fim">© <span id="ano">2026</span> LF Uniformes. Todos os direitos reservados.</p>
@@ -80,7 +82,7 @@ FORM = """    <section id="orcamento" class="secao secao--escura">
             <li>Segunda a sexta, das 8h às 18h</li>
           </ul>
         </div>
-        <form class="form" id="form-orcamento" data-segmento="{segmento}" novalidate>
+        <form class="form" id="form-orcamento" data-segmento="{segmento}" data-segmento-nome="{segmento_nome}" novalidate>
           <div class="campo"><label for="f-nome">Seu nome</label><input id="f-nome" name="nome" autocomplete="name" required></div>
           <div class="campo"><label for="f-empresa">{rotulo_empresa}</label><input id="f-empresa" name="empresa" autocomplete="organization" required></div>
           <div class="campo campo--meia"><label for="f-cidade">Cidade</label><input id="f-cidade" name="cidade" autocomplete="address-level2"></div>
@@ -102,6 +104,9 @@ FORM = """    <section id="orcamento" class="secao secao--escura">
         </form>
       </div>
     </section>"""
+
+CONSENT_E_GTM = "  <!-- Consent Mode do Google: tudo negado até o visitante aceitar (antes do GTM) -->\n  <script>\n  window.dataLayer = window.dataLayer || [];\n  function gtag(){dataLayer.push(arguments);}\n  gtag('consent', 'default', {\n    ad_storage: 'denied',\n    ad_user_data: 'denied',\n    ad_personalization: 'denied',\n    analytics_storage: 'denied',\n    wait_for_update: 500\n  });\n  try {\n    var lfc = JSON.parse(localStorage.getItem('lf_consentimento') || 'null');\n    if (lfc && lfc.valor === 'granted' && lfc.expira_em > Date.now()) {\n      gtag('consent', 'update', {ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted', analytics_storage: 'granted'});\n    }\n  } catch (e) {}\n  </script>\n  <!-- Google Tag Manager -->\n  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':\n  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],\n  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=\n  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);\n  })(window,document,'script','dataLayer','GTM-PGRMXWQ');</script>\n  <!-- End Google Tag Manager -->"
+GTM_NOSCRIPT = '  <!-- Google Tag Manager (noscript) -->\n  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PGRMXWQ" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>\n  <!-- End Google Tag Manager (noscript) -->'
 
 
 def pagina(p):
@@ -159,9 +164,39 @@ def pagina(p):
         f'        <li><a href="{href}">{nome}</a></li>' for href, nome in p["outros"]
     )
     aviso = f'\n      <div class="aviso"><p>{p["aviso"]}</p></div>' if p.get("aviso") else ""
+    jalecos = ""
+    if p.get("jalecos"):
+        j = p["jalecos"]
+        itens = "\n".join(f"            <li>{i}</li>" for i in j["itens"])
+        paragrafos = "\n".join(f"          <p>{t}</p>" for t in j["textos"])
+        jalecos = f"""
+    <section id="jalecos" class="secao">
+      <div class="jalecos">
+        <div>
+          <h2>{j['titulo']}</h2>
+{paragrafos}
+          <p><a class="btn" href="#orcamento">Pedir orçamento de jalecos</a></p>
+        </div>
+        <ul class="lista-check">
+{itens}
+        </ul>
+      </div>
+    </section>
+"""
+    antes_form = ""
+    if p.get("antes_form"):
+        b = p["antes_form"]
+        antes_form = f"""
+    <section class="secao secao--planejamento" aria-labelledby="planejamento-titulo">
+      <div class="planejamento">
+        <h2 id="planejamento-titulo">{b['titulo']}</h2>
+        <p>{b['texto']}</p>
+      </div>
+    </section>
+"""
 
     form = FORM.format(
-        titulo=p["form_titulo"], texto=p["form_texto"], wa=wa, segmento=p["segmento"],
+        titulo=p["form_titulo"], texto=p["form_texto"], wa=wa, segmento=p["segmento"], segmento_nome=p["segmento_nome"],
         rotulo_empresa=p["rotulo_empresa"], setores=setores, placeholder=p["placeholder"],
     )
 
@@ -169,6 +204,24 @@ def pagina(p):
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8">
+  <!-- Consent Mode do Google: tudo negado até o visitante aceitar (antes do GTM) -->
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){{dataLayer.push(arguments);}}
+  gtag('consent', 'default', {{
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    wait_for_update: 500
+  }});
+  try {{
+    var lfc = JSON.parse(localStorage.getItem('lf_consentimento') || 'null');
+    if (lfc && lfc.valor === 'granted' && lfc.expira_em > Date.now()) {{
+      gtag('consent', 'update', {{ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted', analytics_storage: 'granted'}});
+    }}
+  }} catch (e) {{}}
+  </script>
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){{w[l]=w[l]||[];w[l].push({{'gtm.start':
   new Date().getTime(),event:'gtm.js'}});var f=d.getElementsByTagName(s)[0],
@@ -231,7 +284,7 @@ def pagina(p):
         </figcaption>
       </figure>
     </section>
-
+{jalecos}
     <section class="secao">
       <div class="secao__cab">
         <h2>{p['areas_titulo']}</h2>
@@ -285,7 +338,7 @@ def pagina(p):
 {outros}
       </ul>
     </section>
-
+{antes_form}
 {form}
   </main>
 
@@ -300,6 +353,95 @@ def pagina(p):
 </html>
 """
     pasta = os.path.join(SAIDA, p["slug"])
+    os.makedirs(pasta, exist_ok=True)
+    with open(os.path.join(pasta, "index.html"), "w", encoding="utf-8") as f:
+        f.write(html)
+    return url
+
+
+
+def pagina_privacidade():
+    V = '<mark class="validar">[VALIDAR COM A LF]</mark>'
+    url = f"{BASE}/privacidade/"
+    corpo = f"""
+    <article class="texto-legal">
+      <h1>Política de Privacidade e Cookies</h1>
+      <p>Esta política explica quais dados a LF Uniformes trata quando você visita o site lfuniformes.com.br, para que eles servem e como você pode mudar suas escolhas. Última atualização: 9 de novembro de 2026.</p>
+
+      <h2>Quem é responsável pelos dados</h2>
+      <p>LF Uniformes Executivos LTDA, CNPJ 66.939.750/0001-31, R. Luiz França, 1588, Cajuru, Curitiba, PR, 82940-090. Contato: comercial@lfuniformes.com.br ou (41) 3653-9065.</p>
+      <p>Encarregado pelo tratamento de dados pessoais (DPO): {V}</p>
+
+      <h2>Quais dados tratamos</h2>
+      <ul>
+        <li><strong>Pedido de orçamento:</strong> nome, empresa, cidade, número de colaboradores, peças de interesse e a mensagem que você escrever. Esses dados não ficam guardados no site: são enviados pelo WhatsApp para a nossa equipe comercial quando você confirma o envio.</li>
+        <li><strong>Origem da visita:</strong> quando você chega por um anúncio ou link de campanha, guardamos no seu navegador, por até 90 dias, a campanha, a palavra-chave e o identificador do clique (por exemplo, gclid). Isso nos ajuda a saber quais anúncios trazem pedidos de orçamento. Esses dados não identificam você pelo nome.</li>
+        <li><strong>Cookies de análise e de anúncios:</strong> usados pelo Google Analytics, Google Ads e Meta (Facebook e Instagram) para medir visitas e o resultado das campanhas. Só são ativados se você clicar em "Aceitar" no aviso de cookies.</li>
+        <li><strong>Sua escolha sobre cookies:</strong> guardada no seu navegador por 12 meses, para não perguntarmos de novo a cada visita.</li>
+      </ul>
+
+      <h2>Para que usamos os dados</h2>
+      <ul>
+        <li>Responder ao seu pedido de orçamento e conversar sobre uniformes.</li>
+        <li>Entender como o site é usado e melhorar o conteúdo.</li>
+        <li>Medir o resultado dos nossos anúncios e mostrá-los a pessoas com mais chance de interesse, quando você aceita os cookies de anúncios.</li>
+      </ul>
+      <p>Bases legais: consentimento, para os cookies de análise e de anúncios; procedimentos preliminares a um contrato, para responder ao pedido de orçamento; e legítimo interesse, para a origem da visita. {V}</p>
+
+      <h2>Com quem compartilhamos</h2>
+      <p>Com fornecedores que operam as ferramentas do site e do atendimento: Google (Analytics, Ads e Tag Manager), Meta (WhatsApp, Facebook e Instagram) e a empresa de hospedagem do site. Não vendemos dados pessoais. Alguns desses fornecedores podem armazenar dados fora do Brasil, conforme as próprias políticas. {V}</p>
+
+      <h2>Por quanto tempo guardamos</h2>
+      <p>A origem da visita fica no seu navegador por até 90 dias e a escolha sobre cookies por 12 meses. As conversas de orçamento ficam guardadas pelo tempo necessário ao atendimento e às obrigações legais. {V}</p>
+
+      <h2>Seus direitos</h2>
+      <p>Pela Lei Geral de Proteção de Dados (Lei 13.709/2018), você pode pedir a confirmação do tratamento, o acesso, a correção, a exclusão ou a portabilidade dos seus dados, além de revogar o consentimento a qualquer momento. Para isso, escreva para comercial@lfuniformes.com.br. {V}</p>
+
+      <h2>Como mudar sua escolha sobre cookies</h2>
+      <p>Clique em <a href="#" data-reabrir-cookies>Preferências de cookies</a> para ver o aviso de novo e escolher entre aceitar ou recusar. Você também pode apagar os cookies nas configurações do seu navegador.</p>
+    </article>
+"""
+    html = f"""<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+{CONSENT_E_GTM}
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Política de Privacidade e Cookies | LF Uniformes</title>
+  <meta name="description" content="Como a LF Uniformes trata dados pessoais e cookies no site lfuniformes.com.br, conforme a LGPD.">
+  <link rel="canonical" href="{url}">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#051129">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,400..800&display=swap" rel="stylesheet">
+  <style>
+{css}
+  </style>
+</head>
+<body>
+{GTM_NOSCRIPT}
+{CABECALHO}
+
+  <nav class="migalhas" aria-label="Você está em">
+    <ol><li><a href="/">Início</a></li><li aria-current="page">Política de Privacidade</li></ol>
+  </nav>
+
+  <main id="conteudo">
+{corpo}
+  </main>
+
+{RODAPE}
+
+  <script>
+{js}
+  </script>
+</body>
+</html>
+"""
+    pasta = os.path.join(SAIDA, "privacidade")
     os.makedirs(pasta, exist_ok=True)
     with open(os.path.join(pasta, "index.html"), "w", encoding="utf-8") as f:
         f.write(html)
@@ -325,28 +467,45 @@ def outros(excluir):
 PAGINAS = [
     {
         "slug": "uniformes-para-hospitais",
-        "segmento": "Hospital",
+        "segmento": "hospitais",
+        "segmento_nome": "Hospital",
         "migalha": "Uniformes para hospitais",
-        "servico": "Uniformes para recepção, administrativo e equipes de apoio de hospitais",
+        "servico": "Jalecos e uniformes para equipes de hospitais",
         "publico": "Hospitais",
-        "title": "Uniformes para Hospitais em Curitiba: Recepção e Apoio | LF Uniformes",
-        "description": "Uniformes para recepção, internação, administrativo, higienização, manutenção e portaria de hospitais. Medidas tiradas no hospital, bordado com o logo e prazo médio de 30 dias úteis.",
-        "sobretitulo": "Uniformes para hospitais em Curitiba",
-        "h1": "Uniformes para recepção, administrativo e equipes de apoio de hospitais",
-        "resposta": "A LF Uniformes confecciona os uniformes de quem recebe, organiza e mantém o hospital funcionando: recepção e internação, faturamento, central de atendimento, higienização, manutenção e portaria. Levamos a grade de tamanhos até o hospital e bordamos o logo da instituição.",
+        "title": "Jalecos e Uniformes para Hospitais em Curitiba | LF Uniformes",
+        "description": "Jaleco médico e jalecos personalizados, mais uniformes para recepção, administrativo e apoio de hospitais. Logo bordado e prazo médio de 30 dias úteis.",
+        "sobretitulo": "Jalecos e uniformes para hospitais em Curitiba",
+        "h1": "Jalecos e uniformes para as equipes do seu hospital",
+        "resposta": "A LF Uniformes confecciona jalecos personalizados, incluindo jaleco médico, e os uniformes de quem recebe, organiza e mantém o hospital funcionando: recepção e internação, faturamento, central de atendimento, higienização, manutenção e portaria. Tudo com o logo da instituição bordado.",
+        "jalecos": {
+            "titulo": "Jalecos personalizados para a equipe do hospital",
+            "textos": [
+                "Confeccionamos jaleco médico e jalecos personalizados para a equipe do hospital, no padrão de cores da instituição e com o logo bordado. Assim, o atendimento ao paciente segue a mesma identidade visual da recepção ao consultório.",
+                "Os jalecos entram no mesmo pedido dos demais uniformes, com a mesma prova de bordado e o mesmo prazo médio de 30 dias úteis.",
+            ],
+            "itens": [
+                "Jaleco médico personalizado com o logo do hospital",
+                "Jalecos personalizados para as equipes do hospital",
+                "Bordado do logo com prova para aprovação antes da produção; também fazemos DTF",
+                "Cores dentro da cartela do tecido escolhido",
+                "Tecidos, modelos e grade de tamanhos dos jalecos: <mark class=\"validar\">[VALIDAR COM A LF]</mark>",
+                "Não fazemos scrubs nem roupas privativas",
+            ],
+        },
         "imagem": "feminino.webp",
         "imagem_alt": "Recepcionista com uniforme social azul-marinho em balcão de atendimento",
         "etiqueta": "Medidas tiradas no próprio hospital",
         "areas_titulo": "Uniforme certo para cada setor do hospital",
         "areas_texto": "Um hospital tem equipes com rotinas muito diferentes. Indicamos peças pensadas para cada uma, com a mesma identidade visual.",
         "areas": [
+            ("Médicos e equipe assistencial", "Jaleco médico personalizado com o logo bordado", "Identificação clara e padrão visual da instituição no atendimento."),
             ("Recepção e internação", "Blazer, camisete ou camisa social, calça social, maxicolete", "Primeiro contato do paciente: o uniforme social transmite organização e confiança."),
             ("Faturamento, administrativo e central de atendimento", "Camisa social, calça social, colete ou pulôver", "Conforto para longas jornadas sentado, sem perder o padrão."),
             ("Higienização e limpeza", "Jaleco para limpeza, calça com elástico, camisa polo", "Peças práticas para movimento constante e lavagem frequente."),
             ("Manutenção e infraestrutura", "Camisa polo em malha piquet, calça, jaqueta", "Resistência para o trabalho em campo, com identificação clara."),
             ("Portaria e segurança", "Camisa social, calça social, jaqueta social", "Presença e autoridade na entrada do hospital."),
         ],
-        "aviso": "Não confeccionamos jalecos médicos nem roupas privativas (scrubs) para a equipe assistencial. Nosso foco são as equipes de recepção, administrativo e apoio.",
+        "aviso": "Não confeccionamos scrubs nem roupas privativas para a equipe assistencial.",
         "motivos_titulo": "Por que hospitais escolhem a LF",
         "motivos": [
             ("Medidas no hospital, sem tirar ninguém do setor", "Levamos a grade física para os colaboradores provarem no próprio hospital. Para equipes em vários turnos, também há a tabela digital de medidas."),
@@ -357,7 +516,7 @@ PAGINAS = [
         "etapa1": "Entendemos os setores, o número de colaboradores e a identidade do hospital. O orçamento sai em 1 a 2 dias.",
         "etapa2": "Levamos a grade física até o hospital para cada colaborador provar, ou enviamos a tabela digital de medidas para equipes em turnos.",
         "faq": [
-            ("A LF Uniformes faz jaleco médico ou scrub?", "Não. Confeccionamos uniformes para recepção, internação, administrativo, higienização, manutenção e portaria de hospitais. Não fazemos jalecos médicos nem roupas privativas para a equipe assistencial."),
+            ("A LF Uniformes faz jaleco médico?", "Sim. Confeccionamos jaleco médico e jalecos personalizados com o logo do hospital bordado, além dos uniformes de recepção, administrativo e apoio. Não fazemos scrubs nem roupas privativas."),
             ("Como funciona a tomada de medidas em um hospital com vários turnos?", "Levamos a grade física de tamanhos até o hospital para os colaboradores provarem. Quem não puder provar no horário da visita usa a tabela digital de medidas."),
             ("Qual o prazo de entrega de uniformes para hospitais?", "O prazo médio é de 30 dias úteis a partir da confirmação do pedido e do pagamento da entrada. Pode variar conforme as peças escolhidas."),
             ("Dá para bordar o logo do hospital?", "Sim. Fazemos bordado ou DTF com o logo da instituição, e o bordado passa por uma prova para aprovação antes da produção."),
@@ -365,35 +524,52 @@ PAGINAS = [
         ],
         "outros": outros("/uniformes-para-hospitais/"),
         "form_titulo": "Peça um orçamento para o seu hospital",
-        "form_texto": "Conte quais setores e quantos colaboradores quer uniformizar. Respondemos em 1 a 2 dias com as peças indicadas e o prazo.",
+        "form_texto": "Conte quais setores, jalecos e quantos colaboradores quer uniformizar. Respondemos em 1 a 2 dias com as peças indicadas e o prazo.",
         "rotulo_empresa": "Hospital",
-        "setores_form": ["Recepção e internação", "Administrativo", "Higienização", "Manutenção", "Portaria e segurança"],
+        "setores_form": ["Jalecos (equipe de saúde)", "Recepção e internação", "Administrativo", "Higienização", "Manutenção", "Portaria e segurança"],
         "placeholder": "Cores do hospital, prazo desejado, número de colaboradores por setor…",
-        "wa_msg": "Oi, vim pelo site! Gostaria de um orçamento de uniformes para hospital.",
+        "wa_msg": "Oi, vim pelo site! Gostaria de um orçamento de jalecos e uniformes para hospital.",
     },
     {
         "slug": "uniformes-para-clinicas",
-        "segmento": "Clínica",
+        "segmento": "clinicas",
+        "segmento_nome": "Clínica",
         "migalha": "Uniformes para clínicas",
-        "servico": "Uniformes para recepção e equipes de clínicas",
+        "servico": "Jalecos e uniformes para clínicas",
         "publico": "Clínicas médicas, odontológicas, de estética e laboratórios",
-        "title": "Uniformes para Clínicas em Curitiba: Recepção e Equipe | LF Uniformes",
-        "description": "Uniformes para recepção, atendimento, administrativo e equipe de apoio de clínicas médicas, odontológicas, de estética e laboratórios. Bordado com o logo e prazo médio de 30 dias úteis.",
-        "sobretitulo": "Uniformes para clínicas em Curitiba",
-        "h1": "Uniformes para a recepção e a equipe da sua clínica",
-        "resposta": "A LF Uniformes confecciona uniformes para quem atende o paciente antes e depois da consulta: recepção, agendamento, administrativo e equipe de apoio de clínicas médicas, odontológicas, de estética e laboratórios. Modelos sociais e polos com o logo da clínica bordado.",
+        "title": "Jalecos e Uniformes para Clínicas em Curitiba | LF Uniformes",
+        "description": "Jalecos personalizados e jaleco médico para clínicas médicas, odontológicas e de estética, mais uniformes para recepção e apoio. Logo bordado.",
+        "sobretitulo": "Jalecos e uniformes para clínicas em Curitiba",
+        "h1": "Jalecos e uniformes para a sua clínica",
+        "resposta": "A LF Uniformes confecciona jalecos personalizados, incluindo jaleco médico, para os profissionais da sua clínica, e os uniformes da recepção, do agendamento, do administrativo e da equipe de apoio. Atendemos clínicas médicas, odontológicas, de estética e laboratórios, sempre com o logo da clínica bordado.",
+        "jalecos": {
+            "titulo": "Jalecos personalizados com o logo da sua clínica",
+            "textos": [
+                "Confeccionamos jaleco médico e jalecos personalizados para médicos, dentistas e profissionais de estética, com o logo da clínica bordado. O profissional e a recepção passam a ter a mesma identidade visual.",
+                "Os jalecos podem entrar no mesmo pedido dos uniformes da equipe, com prova de bordado antes da produção e prazo médio de 30 dias úteis.",
+            ],
+            "itens": [
+                "Jaleco médico personalizado com o logo da clínica",
+                "Jalecos personalizados para dentistas e profissionais de estética",
+                "Bordado do logo com prova para aprovação antes da produção; também fazemos DTF",
+                "Cores dentro da cartela do tecido escolhido",
+                "Tecidos, modelos e grade de tamanhos dos jalecos: <mark class=\"validar\">[VALIDAR COM A LF]</mark>",
+                "Não fazemos scrubs nem roupas privativas",
+            ],
+        },
         "imagem": "feminino.webp",
         "imagem_alt": "Recepcionista de clínica com blazer azul-marinho e blusa branca",
         "etiqueta": "Logo da clínica bordado com prova",
         "areas_titulo": "Uniforme certo para cada função da clínica",
         "areas_texto": "Em uma clínica, a recepção é a primeira impressão do paciente. O uniforme ajuda a transmitir cuidado antes mesmo do atendimento.",
         "areas": [
+            ("Médicos, dentistas e profissionais de estética", "Jaleco médico personalizado com o logo bordado", "O profissional e a recepção com a mesma identidade visual."),
             ("Recepção e agendamento", "Blazer, camisete social, calça ou saia, maxicolete", "O paciente reconhece de imediato quem está ali para atendê-lo."),
             ("Administrativo e financeiro", "Camisa social, calça social, colete ou pulôver", "Padrão profissional com conforto para o dia todo."),
             ("Auxiliares e equipe de apoio", "Camisa polo em malha piquet bordada, calça", "Peça prática e identificada para quem circula pela clínica."),
             ("Limpeza e conservação", "Jaleco para limpeza, calça com elástico", "Durável e fácil de lavar."),
         ],
-        "aviso": "Não confeccionamos jalecos médicos nem roupas privativas (scrubs) para os profissionais de saúde. Nosso foco são a recepção, o administrativo e a equipe de apoio.",
+        "aviso": "Não confeccionamos scrubs nem roupas privativas.",
         "motivos_titulo": "Por que clínicas escolhem a LF",
         "motivos": [
             ("Imagem alinhada à marca da clínica", "Escolhemos juntos o tecido e a cor dentro das cartelas, e bordamos o logo com prova de aprovação antes da produção."),
@@ -404,7 +580,7 @@ PAGINAS = [
         "etapa1": "Entendemos a equipe, o estilo da clínica e as cores da marca. O orçamento sai em 1 a 2 dias.",
         "etapa2": "Levamos a grade física até a clínica, a equipe prova na nossa loja ou usa a tabela digital de medidas.",
         "faq": [
-            ("A LF Uniformes faz jaleco para dentista ou médico?", "Não. Confeccionamos uniformes para recepção, agendamento, administrativo e equipe de apoio de clínicas. Não fazemos jalecos nem scrubs para os profissionais de saúde."),
+            ("A LF Uniformes faz jaleco para dentista ou médico?", "Sim. Confeccionamos jaleco médico e jalecos personalizados com o logo da clínica bordado. Não fazemos scrubs nem roupas privativas."),
             ("Atendem clínicas pequenas?", "Sim. Atendemos clínicas de diferentes tamanhos. Algumas peças têm condições específicas de quantidade, que informamos no orçamento."),
             ("Qual o prazo de entrega?", "O prazo médio é de 30 dias úteis a partir da confirmação do pedido e do pagamento da entrada. Pode variar conforme as peças."),
             ("Dá para colocar o logo da clínica?", "Sim, com bordado ou DTF. O bordado passa por uma prova para aprovação antes da produção."),
@@ -414,13 +590,18 @@ PAGINAS = [
         "form_titulo": "Peça um orçamento para a sua clínica",
         "form_texto": "Conte o tipo de clínica, quantas pessoas e quais funções quer uniformizar. Respondemos em 1 a 2 dias.",
         "rotulo_empresa": "Clínica",
-        "setores_form": ["Recepção e agendamento", "Administrativo", "Equipe de apoio", "Limpeza"],
+        "setores_form": ["Jalecos (médicos, dentistas, estética)", "Recepção e agendamento", "Administrativo", "Equipe de apoio", "Limpeza"],
         "placeholder": "Tipo de clínica, cores da marca, prazo desejado…",
-        "wa_msg": "Oi, vim pelo site! Gostaria de um orçamento de uniformes para clínica.",
+        "wa_msg": "Oi, vim pelo site! Gostaria de um orçamento de jalecos e uniformes para clínica.",
     },
     {
         "slug": "uniformes-para-escolas",
-        "segmento": "Escola",
+        "segmento": "escolas",
+        "segmento_nome": "Escola",
+        "antes_form": {
+            "titulo": "Planeje o pedido para o início das aulas",
+            "texto": "Para a equipe estar uniformizada no início das aulas, o pedido precisa ser confirmado até <mark class=\"validar\">[DATA - VALIDAR COM A LF]</mark>. O prazo médio de produção é de 30 dias úteis após a confirmação do pedido e da entrada.",
+        },
         "migalha": "Uniformes para escolas",
         "servico": "Uniformes para colaboradores de escolas e colégios",
         "publico": "Escolas e colégios",
@@ -470,3 +651,4 @@ PAGINAS = [
 if __name__ == "__main__":
     for p in PAGINAS:
         print(pagina(p))
+    print(pagina_privacidade())

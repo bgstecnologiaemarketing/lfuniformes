@@ -2,6 +2,24 @@
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8">
+  <!-- Consent Mode do Google: tudo negado até o visitante aceitar (antes do GTM) -->
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    wait_for_update: 500
+  });
+  try {
+    var lfc = JSON.parse(localStorage.getItem('lf_consentimento') || 'null');
+    if (lfc && lfc.valor === 'granted' && lfc.expira_em > Date.now()) {
+      gtag('consent', 'update', {ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted', analytics_storage: 'granted'});
+    }
+  } catch (e) {}
+  </script>
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -12,7 +30,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Página não encontrada | LF Uniformes</title>
   <meta name="robots" content="noindex">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2710%27 fill=%27%2313233f%27/%3E%3Ctext x=%2732%27 y=%2743%27 font-family=%27Arial%27 font-weight=%27700%27 font-size=%2730%27 fill=%27%23f2c230%27 text-anchor=%27middle%27%3ELF%3C/text%3E%3C/svg%3E">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,400..800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/style.css">
 </head>

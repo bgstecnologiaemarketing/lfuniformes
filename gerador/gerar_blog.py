@@ -123,6 +123,24 @@ def head(titulo, descricao, url, ld, extra=""):
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8">
+  <!-- Consent Mode do Google: tudo negado até o visitante aceitar (antes do GTM) -->
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){{dataLayer.push(arguments);}}
+  gtag('consent', 'default', {{
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    wait_for_update: 500
+  }});
+  try {{
+    var lfc = JSON.parse(localStorage.getItem('lf_consentimento') || 'null');
+    if (lfc && lfc.valor === 'granted' && lfc.expira_em > Date.now()) {{
+      gtag('consent', 'update', {{ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted', analytics_storage: 'granted'}});
+    }}
+  }} catch (e) {{}}
+  </script>
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){{w[l]=w[l]||[];w[l].push({{'gtm.start':
   new Date().getTime(),event:'gtm.js'}});var f=d.getElementsByTagName(s)[0],
@@ -395,7 +413,7 @@ def gerar_feed(todos):
 
 
 def gerar_sitemap(todos):
-    urls = [("", HOJE), ("uniformes-para-hospitais/", HOJE), ("uniformes-para-clinicas/", HOJE), ("uniformes-para-escolas/", HOJE)]
+    urls = [("", HOJE), ("uniformes-para-hospitais/", HOJE), ("uniformes-para-clinicas/", HOJE), ("uniformes-para-escolas/", HOJE), ("privacidade/", HOJE)]
     if todos:
         urls.append(("blog/", max(a["data"] for a in todos)))
         urls += [(f"blog/{a['slug']}/", str(a.get("atualizado", a["data"]))) for a in todos]

@@ -2,6 +2,24 @@
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8">
+  <!-- Consent Mode do Google: tudo negado até o visitante aceitar (antes do GTM) -->
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    wait_for_update: 500
+  });
+  try {
+    var lfc = JSON.parse(localStorage.getItem('lf_consentimento') || 'null');
+    if (lfc && lfc.valor === 'granted' && lfc.expira_em > Date.now()) {
+      gtag('consent', 'update', {ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted', analytics_storage: 'granted'});
+    }
+  } catch (e) {}
+  </script>
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -77,7 +95,7 @@
           {"@type": "State", "name": "São Paulo"},
           {"@type": "State", "name": "Rio de Janeiro"}
         ],
-        "knowsAbout": ["uniformes executivos", "uniformes profissionais", "uniformes para hospitais e clínicas", "uniformes escolares para colaboradores", "camisa social para uniforme", "camisa polo piquet", "bordado em uniformes", "confecção de uniformes"],
+        "knowsAbout": ["uniformes executivos", "uniformes profissionais", "jalecos personalizados", "jaleco médico", "uniformes para hospitais e clínicas", "uniformes escolares para colaboradores", "camisa social para uniforme", "camisa polo piquet", "bordado em uniformes", "confecção de uniformes"],
         "hasOfferCatalog": {
           "@type": "OfferCatalog",
           "name": "Linhas de uniformes",
@@ -126,7 +144,7 @@
       </a>
       <button class="menu-btn" aria-expanded="false" aria-controls="menu">Menu</button>
       <nav id="menu" class="nav" aria-label="Principal">
-        <a href="#linhas">Uniformes</a>
+        <a href="#pecas">Uniformes</a>
         <a href="#segmentos">Segmentos</a>
         <a href="#como-trabalhamos">Como trabalhamos</a>
         <a href="#clientes">Clientes</a>
@@ -165,6 +183,44 @@
         <div><dt>dias úteis de prazo médio</dt><dd>30</dd></div>
         <div><dt>dias para receber o orçamento</dt><dd>1 a 2</dd></div>
       </dl>
+    </section>
+
+    <section id="pecas" class="secao">
+      <div class="secao__cab">
+        <h2>Uniformes executivos para a sua empresa</h2>
+        <p>Confeccionamos cada peça do uniforme executivo e do operacional com modelagem própria, tecidos indicados para o uso diário e o logo da sua empresa bordado.</p>
+      </div>
+      <div class="pecas-grade">
+        <article class="peca peca--destaque">
+          <h3>Uniforme social feminino e masculino</h3>
+          <p>Conjuntos completos para recepção, comercial e administrativo. No feminino: blazer, camisete social, calça, saia, colete e maxicolete. No masculino: paletó, camisa social, calça e gravata.</p>
+        </article>
+        <article class="peca">
+          <h3>Camisa social</h3>
+          <p>Uma das peças mais pedidas. Tecidos Tricoline Ibiza, London Confort, Confort Plus e Amelie. Masculina do 1 ao 9 e camisete feminina do 34 ao 54.</p>
+        </article>
+        <article class="peca">
+          <h3>Camisa polo</h3>
+          <p>Em malha piquet, do PP ao XGG, com o logo bordado ou em DTF. Prática para equipes de campo, manutenção e apoio.</p>
+        </article>
+        <article class="peca">
+          <h3>Calça social</h3>
+          <p>Em two way, feminina do 34 ao 56 e masculina do 36 ao 54. Também fazemos calça de sarja e calça com elástico.</p>
+        </article>
+        <article class="peca">
+          <h3>Blazer</h3>
+          <p>Blazer executivo feminino e paletó masculino em two way: a peça que mais transmite padrão no atendimento.</p>
+        </article>
+        <article class="peca">
+          <h3>Jaqueta</h3>
+          <p>Jaqueta social e jaqueta para equipes operacionais, no mesmo padrão de cores do restante do uniforme.</p>
+        </article>
+        <article class="peca">
+          <h3>Jaleco</h3>
+          <p>Jaleco médico e jalecos personalizados com o logo bordado, para <a class="link" href="/uniformes-para-clinicas/">clínicas</a> e <a class="link" href="/uniformes-para-hospitais/">hospitais</a>.</p>
+        </article>
+      </div>
+      <p class="secao__acao"><a class="btn" href="#orcamento">Pedir orçamento</a></p>
     </section>
 
     <section id="linhas" class="secao">
@@ -320,7 +376,7 @@
             <li>Segunda a sexta, das 8h às 18h</li>
           </ul>
         </div>
-        <form class="form" id="form-orcamento" novalidate>
+        <form class="form" id="form-orcamento" data-segmento="home" novalidate>
           <div class="campo"><label for="f-nome">Seu nome</label><input id="f-nome" name="nome" autocomplete="name" required></div>
           <div class="campo"><label for="f-empresa">Empresa</label><input id="f-empresa" name="empresa" autocomplete="organization" required></div>
           <div class="campo campo--meia"><label for="f-cidade">Cidade</label><input id="f-cidade" name="cidade" autocomplete="address-level2"></div>
@@ -371,6 +427,8 @@
         <a href="/uniformes-para-escolas/">Uniformes para escolas</a>
         <a href="#perguntas">Perguntas frequentes</a>
         <a href="#orcamento">Orçamento</a>
+        <a href="/privacidade/">Política de Privacidade</a>
+        <a href="#" data-reabrir-cookies>Preferências de cookies</a>
       </nav>
     </div>
     <p class="rodape__fim">© <span id="ano">2026</span> LF Uniformes. Todos os direitos reservados.</p>
