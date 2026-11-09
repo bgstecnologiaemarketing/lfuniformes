@@ -2,6 +2,24 @@
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8">
+  <!-- Consent Mode do Google: tudo negado até o visitante aceitar (antes do GTM) -->
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    wait_for_update: 500
+  });
+  try {
+    var lfc = JSON.parse(localStorage.getItem('lf_consentimento') || 'null');
+    if (lfc && lfc.valor === 'granted' && lfc.expira_em > Date.now()) {
+      gtag('consent', 'update', {ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted', analytics_storage: 'granted'});
+    }
+  } catch (e) {}
+  </script>
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -253,6 +271,60 @@ p { margin: 0 0 1em; max-width: 62ch; }
 @media (max-width: 980px) { .cards { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 760px) { .cards { grid-template-columns: 1fr; } .material { padding: 22px; } .blog-cab { padding: 28px 20px 0; } }
 
+/* Bloco de peças da home */
+.pecas-grade { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.peca { border: 1px solid var(--linha); border-radius: var(--raio); padding: 24px; background: var(--branco); }
+.peca h3 { margin-bottom: 8px; }
+.peca p { color: var(--tinta-2); font-size: .98rem; margin: 0; }
+.peca--destaque { grid-column: span 3; background: var(--papel); border-left: 4px solid var(--fita); }
+.peca--destaque h3 { font-size: 1.4rem; }
+
+/* Seção de jalecos */
+.jalecos { display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: start; }
+.lista-check { list-style: none; padding: 0; margin: 0; }
+.lista-check li { position: relative; padding: 12px 0 12px 32px; border-bottom: 1px solid var(--linha); }
+.lista-check li::before { content: ""; position: absolute; left: 4px; top: 19px; width: 12px; height: 7px; border-left: 2px solid var(--fita-escuro); border-bottom: 2px solid var(--fita-escuro); transform: rotate(-45deg); }
+
+/* Marcador de conteúdo a validar com a LF */
+.validar { background: #fff1b8; color: #6b4f00; padding: 0 4px; border-radius: 3px; font-weight: 600; }
+
+/* Bloco de planejamento (escolas) */
+.planejamento { max-width: calc(var(--larg) - 48px); margin: 0 auto 0; padding: 24px 28px; background: var(--papel); border-left: 4px solid var(--fita); border-radius: var(--raio); }
+.planejamento h2 { font-size: 1.4rem; margin-bottom: 8px; }
+.planejamento p { margin: 0; font-size: 1.1rem; }
+.secao--planejamento { padding-top: 0; }
+
+/* Política de privacidade */
+.texto-legal { max-width: 760px; margin: 0 auto; padding: 32px 24px 96px; }
+.texto-legal h2 { font-size: 1.5rem; margin-top: 40px; }
+.texto-legal p, .texto-legal li { max-width: 70ch; }
+.texto-legal ul { padding-left: 1.3em; }
+
+/* Aviso de cookies */
+.aviso-cookies { position: fixed; left: 0; right: 0; bottom: 0; z-index: 70; background: var(--marinho); color: var(--branco); padding: 14px 24px; display: flex; align-items: center; justify-content: center; gap: 16px 24px; flex-wrap: wrap; box-shadow: 0 -6px 18px -10px rgba(0,0,0,.4); }
+.aviso-cookies p { margin: 0; font-size: .95rem; max-width: 70ch; }
+.aviso-cookies a { color: var(--fita); font-weight: 600; text-underline-offset: 3px; }
+.aviso-cookies__acoes { display: flex; gap: 10px; }
+.aviso-cookies .btn--sm { min-height: 40px; }
+body.com-aviso { padding-bottom: var(--aviso-h, 0px); }
+body.com-aviso .wa-flutuante { bottom: calc(var(--aviso-h, 0px) + 16px); }
+.rodape__legal { display: flex; flex-wrap: wrap; gap: 8px 20px; }
+.rodape__legal a { color: #c6cfdd; }
+@media (max-width: 980px) {
+  .pecas-grade { grid-template-columns: 1fr 1fr; }
+  .peca--destaque { grid-column: span 2; }
+  .jalecos { grid-template-columns: 1fr; gap: 24px; }
+}
+@media (max-width: 760px) {
+  .pecas-grade { grid-template-columns: 1fr; }
+  .peca--destaque { grid-column: auto; }
+  .aviso-cookies { padding: 12px 16px; justify-content: flex-start; }
+  .aviso-cookies p { font-size: .9rem; }
+  .aviso-cookies__acoes { width: 100%; }
+  .aviso-cookies__acoes .btn { flex: 1; }
+  .planejamento { margin: 0 20px; padding: 20px; }
+}
+
 /* Segmentos */
 .segmentos { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
 .segmentos p { color: #c6cfdd; font-size: 1.15rem; }
@@ -409,7 +481,7 @@ img.sem-img { visibility: hidden; }
           {"@type": "State", "name": "São Paulo"},
           {"@type": "State", "name": "Rio de Janeiro"}
         ],
-        "knowsAbout": ["uniformes executivos", "uniformes profissionais", "uniformes para hospitais e clínicas", "uniformes escolares para colaboradores", "camisa social para uniforme", "camisa polo piquet", "bordado em uniformes", "confecção de uniformes"],
+        "knowsAbout": ["uniformes executivos", "uniformes profissionais", "jalecos personalizados", "jaleco médico", "uniformes para hospitais e clínicas", "uniformes escolares para colaboradores", "camisa social para uniforme", "camisa polo piquet", "bordado em uniformes", "confecção de uniformes"],
         "hasOfferCatalog": {
           "@type": "OfferCatalog",
           "name": "Linhas de uniformes",
@@ -458,7 +530,7 @@ img.sem-img { visibility: hidden; }
       </a>
       <button class="menu-btn" aria-expanded="false" aria-controls="menu">Menu</button>
       <nav id="menu" class="nav" aria-label="Principal">
-        <a href="#linhas">Uniformes</a>
+        <a href="#pecas">Uniformes</a>
         <a href="#segmentos">Segmentos</a>
         <a href="#como-trabalhamos">Como trabalhamos</a>
         <a href="#clientes">Clientes</a>
@@ -497,6 +569,44 @@ img.sem-img { visibility: hidden; }
         <div><dt>dias úteis de prazo médio</dt><dd>30</dd></div>
         <div><dt>dias para receber o orçamento</dt><dd>1 a 2</dd></div>
       </dl>
+    </section>
+
+    <section id="pecas" class="secao">
+      <div class="secao__cab">
+        <h2>Uniformes executivos para a sua empresa</h2>
+        <p>Confeccionamos cada peça do uniforme executivo e do operacional com modelagem própria, tecidos indicados para o uso diário e o logo da sua empresa bordado.</p>
+      </div>
+      <div class="pecas-grade">
+        <article class="peca peca--destaque">
+          <h3>Uniforme social feminino e masculino</h3>
+          <p>Conjuntos completos para recepção, comercial e administrativo. No feminino: blazer, camisete social, calça, saia, colete e maxicolete. No masculino: paletó, camisa social, calça e gravata.</p>
+        </article>
+        <article class="peca">
+          <h3>Camisa social</h3>
+          <p>Uma das peças mais pedidas. Tecidos Tricoline Ibiza, London Confort, Confort Plus e Amelie. Masculina do 1 ao 9 e camisete feminina do 34 ao 54.</p>
+        </article>
+        <article class="peca">
+          <h3>Camisa polo</h3>
+          <p>Em malha piquet, do PP ao XGG, com o logo bordado ou em DTF. Prática para equipes de campo, manutenção e apoio.</p>
+        </article>
+        <article class="peca">
+          <h3>Calça social</h3>
+          <p>Em two way, feminina do 34 ao 56 e masculina do 36 ao 54. Também fazemos calça de sarja e calça com elástico.</p>
+        </article>
+        <article class="peca">
+          <h3>Blazer</h3>
+          <p>Blazer executivo feminino e paletó masculino em two way: a peça que mais transmite padrão no atendimento.</p>
+        </article>
+        <article class="peca">
+          <h3>Jaqueta</h3>
+          <p>Jaqueta social e jaqueta para equipes operacionais, no mesmo padrão de cores do restante do uniforme.</p>
+        </article>
+        <article class="peca">
+          <h3>Jaleco</h3>
+          <p>Jaleco médico e jalecos personalizados com o logo bordado, para <a class="link" href="/uniformes-para-clinicas/">clínicas</a> e <a class="link" href="/uniformes-para-hospitais/">hospitais</a>.</p>
+        </article>
+      </div>
+      <p class="secao__acao"><a class="btn" href="#orcamento">Pedir orçamento</a></p>
     </section>
 
     <section id="linhas" class="secao">
@@ -652,7 +762,7 @@ img.sem-img { visibility: hidden; }
             <li>Segunda a sexta, das 8h às 18h</li>
           </ul>
         </div>
-        <form class="form" id="form-orcamento" novalidate>
+        <form class="form" id="form-orcamento" data-segmento="home" novalidate>
           <div class="campo"><label for="f-nome">Seu nome</label><input id="f-nome" name="nome" autocomplete="name" required></div>
           <div class="campo"><label for="f-empresa">Empresa</label><input id="f-empresa" name="empresa" autocomplete="organization" required></div>
           <div class="campo campo--meia"><label for="f-cidade">Cidade</label><input id="f-cidade" name="cidade" autocomplete="address-level2"></div>
@@ -703,6 +813,8 @@ img.sem-img { visibility: hidden; }
         <a href="/uniformes-para-escolas/">Uniformes para escolas</a>
         <a href="#perguntas">Perguntas frequentes</a>
         <a href="#orcamento">Orçamento</a>
+        <a href="/privacidade/">Política de Privacidade</a>
+        <a href="#" data-reabrir-cookies>Preferências de cookies</a>
       </nav>
     </div>
     <p class="rodape__fim">© <span id="ano">2026</span> LF Uniformes. Todos os direitos reservados.</p>
@@ -713,15 +825,116 @@ img.sem-img { visibility: hidden; }
   </a>
 
   <script>
-// LF Uniformes — scripts básicos
+// LF Uniformes — scripts do site
 (function () {
   var WHATSAPP = '5541991697834';
+  var DIA = 24 * 60 * 60 * 1000;
+  var CHAVE_ORIGEM = 'lf_origem';
+  var CHAVE_CONSENTIMENTO = 'lf_consentimento';
+  var CAMPOS_ORIGEM = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid', 'gbraid', 'wbraid'];
 
-  // Ano do rodapé
+  // ---------------------------------------------------------------------------
+  // Utilidades
+  // ---------------------------------------------------------------------------
+  function lerStorage(chave) {
+    try { return JSON.parse(window.localStorage.getItem(chave) || 'null'); } catch (e) { return null; }
+  }
+  function gravarStorage(chave, valor) {
+    try { window.localStorage.setItem(chave, JSON.stringify(valor)); } catch (e) {}
+  }
+  function apagarStorage(chave) {
+    try { window.localStorage.removeItem(chave); } catch (e) {}
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  if (typeof window.gtag !== 'function') {
+    window.gtag = function () { window.dataLayer.push(arguments); };
+  }
+  function evento(nome, dados) {
+    window.dataLayer.push(Object.assign({ event: nome }, dados || {}));
+  }
+
+  // Código curto do lead: LF-XXXXX (5 caracteres A-Z e 0-9)
+  function gerarLeadId() {
+    var letras = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789', cod = '';
+    var aleatorio = new Uint8Array(5);
+    if (window.crypto && window.crypto.getRandomValues) {
+      window.crypto.getRandomValues(aleatorio);
+    } else {
+      for (var i = 0; i < 5; i++) aleatorio[i] = Math.floor(Math.random() * 256);
+    }
+    for (var j = 0; j < 5; j++) cod += letras.charAt(aleatorio[j] % letras.length);
+    return 'LF-' + cod;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Origem da visita (UTMs + clique do Google), validade de 90 dias,
+  // regra de último clique pago: só sobrescreve quando a visita chega COM utm ou gclid.
+  // ---------------------------------------------------------------------------
+  (function capturarOrigem() {
+    var params = new URLSearchParams(window.location.search);
+    var nova = {}, temParametro = false;
+    CAMPOS_ORIGEM.forEach(function (c) {
+      var v = params.get(c);
+      if (v) { nova[c] = v.slice(0, 200); temParametro = true; }
+    });
+    if (temParametro) {
+      // Anúncio do Google com marcação automática e sem UTM: identifica como google/cpc
+      if (!nova.utm_source && (nova.gclid || nova.gbraid || nova.wbraid)) {
+        nova.utm_source = 'google';
+        nova.utm_medium = nova.utm_medium || 'cpc';
+      }
+      nova.pagina_entrada = window.location.pathname;
+      nova.capturado_em = Date.now();
+      nova.expira_em = Date.now() + 90 * DIA;
+      gravarStorage(CHAVE_ORIGEM, nova);
+      return;
+    }
+    var salva = lerStorage(CHAVE_ORIGEM);
+    if (salva && (!salva.expira_em || salva.expira_em < Date.now())) apagarStorage(CHAVE_ORIGEM);
+  })();
+
+  function origemSalva() {
+    var o = lerStorage(CHAVE_ORIGEM);
+    if (!o || !o.expira_em || o.expira_em < Date.now()) return null;
+    return o;
+  }
+
+  // Campos de origem para o dataLayer (sempre presentes, vazios quando não há origem)
+  function camposOrigem() {
+    var o = origemSalva() || {};
+    return {
+      utm_source: o.utm_source || '',
+      utm_medium: o.utm_medium || '',
+      utm_campaign: o.utm_campaign || '',
+      utm_term: o.utm_term || '',
+      utm_content: o.utm_content || '',
+      gclid: o.gclid || '',
+      gbraid: o.gbraid || '',
+      wbraid: o.wbraid || ''
+    };
+  }
+
+  // Linha discreta no fim da mensagem do WhatsApp
+  function linhaRastreio(leadId) {
+    var o = origemSalva();
+    if (!o || !o.utm_source) return 'Cód: ' + leadId + ' | Origem: direto/orgânico';
+    return 'Cód: ' + leadId +
+      ' | Origem: ' + o.utm_source + '/' + (o.utm_medium || '-') +
+      ' | Campanha: ' + (o.utm_campaign || '-') +
+      ' | Termo: ' + (o.utm_term || '-');
+  }
+
+  function abrirWhatsApp(texto) {
+    window.open('https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(texto), '_blank', 'noopener');
+  }
+
+  // ---------------------------------------------------------------------------
+  // Ano do rodapé e menu mobile
+  // ---------------------------------------------------------------------------
   var ano = document.getElementById('ano');
   if (ano) ano.textContent = new Date().getFullYear();
 
-  // Menu mobile
   var btn = document.querySelector('.menu-btn');
   var nav = document.getElementById('menu');
   if (btn && nav) {
@@ -734,9 +947,9 @@ img.sem-img { visibility: hidden; }
     });
   }
 
-  // Imagem que ainda não foi copiada para o servidor: esconde sem quebrar o layout
-  // Se a foto não for encontrada, tenta variações comuns de nome e extensão
-  // (ex.: hero.png, Hero.jpg, confecção.jpg) antes de esconder o espaço.
+  // ---------------------------------------------------------------------------
+  // Imagens: tenta variações comuns de nome/extensão antes de esconder o espaço
+  // ---------------------------------------------------------------------------
   function variacoes(src) {
     var m = src.match(/^(.*\/)([^\/]+?)\.(\w+)$/);
     if (!m) return [];
@@ -758,27 +971,30 @@ img.sem-img { visibility: hidden; }
     if (img.complete && img.naturalWidth === 0 && img.getAttribute('loading') !== 'lazy') tentarProxima(img);
   });
 
-  // Origem do visitante (UTMs) guardada para acompanhar as mensagens
-  var params = new URLSearchParams(location.search);
-  var utm = ['utm_source', 'utm_medium', 'utm_campaign'].map(function (k) { return params.get(k); }).filter(Boolean);
-  try {
-    if (utm.length) sessionStorage.setItem('lf_origem', utm.join(' / '));
-  } catch (e) {}
-  function origem() {
-    try { return sessionStorage.getItem('lf_origem') || ''; } catch (e) { return ''; }
-  }
-
-  // Eventos para o Google Analytics 4 / Tag Manager, quando instalados
-  function evento(nome, dados) {
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push(Object.assign({ event: nome }, dados || {}));
-  }
-  document.querySelectorAll('[data-wa]').forEach(function (a) {
-    a.addEventListener('click', function () { evento('clique_whatsapp', { posicao: a.getAttribute('data-wa') }); });
+  // ---------------------------------------------------------------------------
+  // Cliques no WhatsApp: gera o código do lead, acrescenta a linha de rastreio
+  // na mensagem e envia o evento clique_whatsapp
+  // ---------------------------------------------------------------------------
+  document.querySelectorAll('a[href*="wa.me/"]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      var leadId = gerarLeadId();
+      try {
+        var url = new URL(a.getAttribute('href'), window.location.href);
+        var base = url.searchParams.get('text') || 'Oi, vim pelo site! Gostaria de falar com um consultor.';
+        base = base.split('\n\nCód: ')[0];
+        // monta com encodeURIComponent (%20 para espaços), formato que o WhatsApp sempre entende
+        a.setAttribute('href', url.origin + url.pathname + '?text=' + encodeURIComponent(base + '\n\n' + linhaRastreio(leadId)));
+      } catch (e) {}
+      evento('clique_whatsapp', Object.assign({
+        posicao: a.getAttribute('data-wa') || 'link',
+        lead_id: leadId
+      }, camposOrigem()));
+    });
   });
 
-  // Formulários de materiais (blog): envia para o webhook (n8n/CRM), se configurado,
-  // ou abre o WhatsApp com o pedido do material.
+  // ---------------------------------------------------------------------------
+  // Formulários de materiais (blog): webhook (n8n/CRM), se configurado, ou WhatsApp
+  // ---------------------------------------------------------------------------
   var LEAD_WEBHOOK = ''; // ex.: 'https://seu-n8n/webhook/lf-leads'
   document.querySelectorAll('form.form-material').forEach(function (fm) {
     fm.addEventListener('submit', function (e) {
@@ -792,32 +1008,98 @@ img.sem-img { visibility: hidden; }
         return;
       }
       err.hidden = true;
-      var dados = {
-        nome: nome, empresa: empresa, whatsapp: zap, email: (d.get('email') || '').trim(),
+      var leadId = gerarLeadId();
+      var dados = Object.assign({
+        lead_id: leadId, nome: nome, empresa: empresa, whatsapp: zap, email: (d.get('email') || '').trim(),
         material: fm.getAttribute('data-material'), material_titulo: fm.getAttribute('data-material-titulo'),
-        artigo: location.pathname, origem: origem()
-      };
-      evento('download_material', { material: dados.material, artigo: dados.artigo });
-      var texto = 'Oi, vim pelo blog da LF! Quero receber o material: ' + dados.material_titulo + '.\n\nNome: ' + nome + '\nEmpresa: ' + empresa + (dados.email ? '\nE-mail: ' + dados.email : '') + '\nArtigo: ' + location.pathname;
+        artigo: window.location.pathname
+      }, camposOrigem());
+      // dataLayer sem dados pessoais
+      evento('download_material', Object.assign({ material: dados.material, artigo: dados.artigo, lead_id: leadId }, camposOrigem()));
+      var texto = 'Oi, vim pelo blog da LF! Quero receber o material: ' + dados.material_titulo + '.\n\nNome: ' + nome +
+        '\nEmpresa: ' + empresa + (dados.email ? '\nE-mail: ' + dados.email : '') + '\nArtigo: ' + window.location.pathname +
+        '\n\n' + linhaRastreio(leadId);
       function concluir() {
         fm.innerHTML = '<p class="material__ok" role="status">Pronto! Vamos enviar o material no seu WhatsApp.</p>';
       }
       if (LEAD_WEBHOOK) {
         fetch(LEAD_WEBHOOK, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(dados) })
           .then(concluir)
-          .catch(function () { window.open('https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(texto), '_blank', 'noopener'); concluir(); });
+          .catch(function () { abrirWhatsApp(texto); concluir(); });
       } else {
-        window.open('https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(texto), '_blank', 'noopener');
+        abrirWhatsApp(texto);
         concluir();
       }
     });
   });
 
-  // Formulário de orçamento: monta a mensagem e abre WhatsApp ou e-mail
+  // ---------------------------------------------------------------------------
+  // Aviso de cookies (LGPD) + Consent Mode do Google
+  // O padrão "denied" é definido no <head>, antes do GTM carregar.
+  // ---------------------------------------------------------------------------
+  function aplicarConsentimento(valor) {
+    var estado = valor === 'granted' ? 'granted' : 'denied';
+    window.gtag('consent', 'update', {
+      ad_storage: estado,
+      ad_user_data: estado,
+      ad_personalization: estado,
+      analytics_storage: estado
+    });
+    gravarStorage(CHAVE_CONSENTIMENTO, { valor: estado, salvo_em: Date.now(), expira_em: Date.now() + 365 * DIA });
+    evento('consentimento_atualizado', { consentimento: estado });
+  }
+
+  (function avisoCookies() {
+    var salvo = lerStorage(CHAVE_CONSENTIMENTO);
+    if (salvo && salvo.expira_em && salvo.expira_em > Date.now()) return;
+
+    var aviso = document.createElement('div');
+    aviso.className = 'aviso-cookies';
+    aviso.setAttribute('role', 'region');
+    aviso.setAttribute('aria-label', 'Aviso de cookies');
+    aviso.innerHTML =
+      '<p>Usamos cookies para medir as visitas e melhorar nossos anúncios. Você pode aceitar ou recusar. ' +
+      '<a href="/privacidade/">Política de Privacidade</a></p>' +
+      '<div class="aviso-cookies__acoes">' +
+      '<button type="button" class="btn btn--sm btn--linha-clara" data-consentimento="denied">Recusar</button>' +
+      '<button type="button" class="btn btn--sm btn--claro" data-consentimento="granted">Aceitar</button>' +
+      '</div>';
+    document.body.appendChild(aviso);
+    document.body.classList.add('com-aviso');
+
+    // Reserva espaço no fim da página e sobe o botão do WhatsApp para o aviso não cobrir nada
+    function ajustarAltura() {
+      document.documentElement.style.setProperty('--aviso-h', aviso.offsetHeight + 'px');
+    }
+    ajustarAltura();
+    window.addEventListener('resize', ajustarAltura);
+
+    aviso.addEventListener('click', function (e) {
+      var escolha = e.target.getAttribute && e.target.getAttribute('data-consentimento');
+      if (!escolha) return;
+      aplicarConsentimento(escolha);
+      aviso.remove();
+      document.body.classList.remove('com-aviso');
+      document.documentElement.style.removeProperty('--aviso-h');
+      window.removeEventListener('resize', ajustarAltura);
+    });
+  })();
+
+  // Link "Preferências de cookies" (rodapé e página de privacidade): reabre a escolha
+  document.querySelectorAll('[data-reabrir-cookies]').forEach(function (el) {
+    el.addEventListener('click', function (e) {
+      e.preventDefault();
+      apagarStorage(CHAVE_CONSENTIMENTO);
+      window.location.reload();
+    });
+  });
+
+  // ---------------------------------------------------------------------------
+  // Formulário de orçamento: monta a mensagem e abre o WhatsApp
+  // ---------------------------------------------------------------------------
   var form = document.getElementById('form-orcamento');
   if (!form) return;
   var erro = document.getElementById('form-erro');
-  var canal = 'whatsapp';
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
@@ -832,23 +1114,34 @@ img.sem-img { visibility: hidden; }
     }
     erro.hidden = true;
 
-    var linhas = d.getAll('linha');
+    var leadId = gerarLeadId();
+    var segmento = form.getAttribute('data-segmento') || 'home';
+    var segmentoNome = form.getAttribute('data-segmento-nome') || '';
+    var marcados = d.getAll('linha');
+    var legenda = form.querySelector('fieldset legend');
+    var rotuloMarcados = legenda ? legenda.textContent.trim() : 'Linhas de interesse';
+
     var texto = [
       'Oi, vim pelo site! Gostaria de solicitar um orçamento.',
       '',
-      form.getAttribute('data-segmento') ? 'Segmento: ' + form.getAttribute('data-segmento') : '',
+      segmentoNome ? 'Segmento: ' + segmentoNome : '',
       'Nome: ' + nome,
       'Empresa: ' + empresa,
       d.get('cidade') ? 'Cidade: ' + d.get('cidade') : '',
       d.get('qtd') ? 'Colaboradores: ' + d.get('qtd') : '',
-      linhas.length ? 'Linhas de interesse: ' + linhas.join(', ') : '',
-      d.get('mensagem') ? 'Mensagem: ' + d.get('mensagem') : '',
-      origem() ? 'Origem: ' + origem() : ''
-    ].filter(function (l, i) { return l !== '' || i === 1; }).join('\n');
+      marcados.length ? rotuloMarcados + ': ' + marcados.join(', ') : '',
+      d.get('mensagem') ? 'Mensagem: ' + d.get('mensagem') : ''
+    ].filter(function (l, i) { return l !== '' || i === 1; }).join('\n') + '\n\n' + linhaRastreio(leadId);
 
-    evento('envio_orcamento', { canal: canal, colaboradores: d.get('qtd') || '', segmento: form.getAttribute('data-segmento') || 'home' });
+    // dataLayer sem nome, telefone ou e-mail
+    evento('envio_orcamento', Object.assign({
+      canal: 'whatsapp',
+      colaboradores: d.get('qtd') || '',
+      segmento: segmento,
+      lead_id: leadId
+    }, camposOrigem()));
 
-    window.open('https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(texto), '_blank', 'noopener');
+    abrirWhatsApp(texto);
   });
 })();
 

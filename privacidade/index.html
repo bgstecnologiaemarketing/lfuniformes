@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <!-- Consent Mode do Google: tudo negado até o visitante aceitar (antes do GTM) -->
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    wait_for_update: 500
+  });
+  try {
+    var lfc = JSON.parse(localStorage.getItem('lf_consentimento') || 'null');
+    if (lfc && lfc.valor === 'granted' && lfc.expira_em > Date.now()) {
+      gtag('consent', 'update', {ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted', analytics_storage: 'granted'});
+    }
+  } catch (e) {}
+  </script>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PGRMXWQ');</script>
+  <!-- End Google Tag Manager -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Política de Privacidade e Cookies | LF Uniformes</title>
+  <meta name="description" content="Como a LF Uniformes trata dados pessoais e cookies no site lfuniformes.com.br, conforme a LGPD.">
+  <link rel="canonical" href="https://lfuniformes.com.br/privacidade/">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#051129">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,400..800&display=swap" rel="stylesheet">
+  <style>
+/* LF Uniformes — estilos base
+   Paleta da marca (logo): azul-marinho #051129 e dourado #C0AC67 */
+:root {
+  --marinho: #051129;
+  --marinho-2: #12234a;
+  --papel: #eef1f4;
+  --branco: #ffffff;
+  --fita: #c0ac67;
+  --fita-escuro: #8f7c3e;
+  --tinta: #1a2233;
+  --tinta-2: #55607a;
+  --linha: #d5dbe3;
+  --fonte: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --larg: 1160px;
+  --raio: 6px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  margin: 0;
+  font-family: var(--fonte);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--tinta);
+  background: var(--branco);
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; }
+h1, h2, h3 { font-stretch: 82%; line-height: 1.08; margin: 0 0 .5em; letter-spacing: -0.01em; }
+h1 { font-size: clamp(2.3rem, 4.6vw, 3.6rem); font-weight: 750; }
+h2 { font-size: clamp(1.85rem, 3.4vw, 2.75rem); font-weight: 720; }
+h3 { font-size: 1.25rem; font-weight: 680; font-stretch: 90%; }
+p { margin: 0 0 1em; max-width: 62ch; }
+
+:focus-visible { outline: 3px solid var(--fita); outline-offset: 3px; border-radius: 2px; }
+
+.skip { position: absolute; left: -999px; top: 8px; background: var(--fita); color: var(--marinho); padding: 8px 14px; z-index: 100; }
+.skip:focus { left: 8px; }
+
+/* Botões e links */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 48px; padding: 12px 22px;
+  background: var(--marinho); color: var(--branco);
+  border: 2px solid var(--marinho); border-radius: var(--raio);
+  font: inherit; font-weight: 650; font-size: 1rem; text-decoration: none; cursor: pointer;
+  transition: background .15s, color .15s;
+}
+.btn:hover { background: var(--marinho-2); border-color: var(--marinho-2); }
+.btn--sm { min-height: 40px; padding: 8px 16px; font-size: .95rem; }
+.btn--linha { background: transparent; color: var(--marinho); }
+.btn--linha:hover { background: var(--marinho); color: var(--branco); }
+.btn--claro { background: var(--branco); color: var(--marinho); border-color: var(--branco); }
+.btn--claro:hover { background: var(--fita); border-color: var(--fita); }
+.btn--linha-clara { background: transparent; color: var(--branco); border-color: rgba(255,255,255,.6); }
+.btn--linha-clara:hover { border-color: var(--branco); background: rgba(255,255,255,.08); }
+.link { font-weight: 650; text-underline-offset: 4px; text-decoration-thickness: 2px; text-decoration-color: var(--fita-escuro); }
+.link:hover { text-decoration-color: currentColor; }
+
+/* Topo */
+.topo { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,.96); border-bottom: 1px solid var(--linha); backdrop-filter: blur(6px); }
+.topo__in { max-width: var(--larg); margin: 0 auto; padding: 12px 24px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.marca { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; color: var(--marinho); }
+.marca img { height: 52px; width: 52px; }
+.marca__nome { display: flex; flex-direction: column; line-height: 1.05; }
+.marca__nome strong { font-size: 1.2rem; font-weight: 750; font-stretch: 85%; }
+.marca__nome span { font-size: .78rem; font-weight: 600; color: var(--fita-escuro); letter-spacing: .02em; }
+.rodape__logo { height: 64px; width: 64px; margin-bottom: 12px; }
+.nav { display: flex; align-items: center; gap: 26px; }
+.nav a:not(.btn) { text-decoration: none; font-weight: 550; font-size: .98rem; color: var(--tinta); }
+.nav a:not(.btn):hover { text-decoration: underline; text-decoration-color: var(--fita); text-decoration-thickness: 2px; text-underline-offset: 6px; }
+.menu-btn { display: none; font: inherit; font-weight: 650; background: none; border: 2px solid var(--marinho); color: var(--marinho); border-radius: var(--raio); padding: 6px 14px; cursor: pointer; }
+
+/* Hero */
+.hero {
+  max-width: var(--larg); margin: 0 auto; padding: 64px 24px 72px;
+  display: grid; grid-template-columns: 1.1fr .9fr; gap: 56px; align-items: center;
+}
+.hero__local { font-weight: 600; color: var(--tinta-2); margin-bottom: 14px; }
+.hero__sub { font-size: 1.2rem; color: var(--tinta-2); max-width: 52ch; }
+.hero__ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.hero__img { margin: 0; position: relative; }
+.hero__img img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--raio); background: var(--papel); }
+
+/* Etiqueta de roupa pendurada na foto */
+.etiqueta {
+  position: absolute; left: -28px; bottom: 36px;
+  background: var(--branco); color: var(--marinho);
+  font-weight: 650; font-size: .95rem; line-height: 1.3;
+  padding: 14px 18px 14px 40px; max-width: 230px;
+  border-radius: 4px 14px 14px 4px;
+  box-shadow: 0 10px 24px -12px rgba(19,35,63,.45);
+  transform: rotate(-3deg);
+}
+.etiqueta__furo { position: absolute; left: 14px; top: 50%; width: 12px; height: 12px; margin-top: -6px; border-radius: 50%; border: 2px solid var(--marinho); background: var(--papel); }
+
+/* Fita métrica: o elemento marcante da página */
+.fita { background: var(--fita); color: var(--marinho); position: relative; overflow: hidden; }
+.fita__regua {
+  height: 22px;
+  background:
+    repeating-linear-gradient(90deg, var(--marinho) 0 2px, transparent 2px 60px),
+    repeating-linear-gradient(90deg, var(--marinho) 0 1px, transparent 1px 12px);
+  background-size: 100% 22px, 100% 11px;
+  background-repeat: repeat-x;
+  opacity: .85;
+}
+.fita__dados { max-width: var(--larg); margin: 0 auto; padding: 18px 24px 30px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+.fita__dados div { display: flex; flex-direction: column-reverse; border-left: 2px solid var(--marinho); padding-left: 16px; }
+.fita__dados dd { margin: 0; font-size: clamp(2.2rem, 4.5vw, 3.4rem); font-weight: 800; font-stretch: 75%; line-height: 1; font-variant-numeric: tabular-nums; }
+.fita__dados dt { font-weight: 600; margin-top: 6px; }
+
+/* Seções */
+.secao { max-width: var(--larg); margin: 0 auto; padding: 96px 24px; }
+.secao--escura, .secao--clara { max-width: none; }
+.secao--escura { background: var(--marinho); color: var(--branco); }
+.secao--clara { background: var(--papel); }
+.secao--escura > *, .secao--clara > * { max-width: calc(var(--larg) - 48px); margin-left: auto; margin-right: auto; }
+.secao__cab { margin-bottom: 48px; }
+.secao__cab p { font-size: 1.15rem; color: var(--tinta-2); }
+.secao__acao { margin-top: 36px; }
+
+/* Linhas de produto */
+.linhas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+.linha img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--raio); background: var(--papel); margin-bottom: 20px; }
+.linha > p { color: var(--tinta-2); }
+.pecas { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 6px 8px; }
+.pecas li { font-size: .9rem; padding: 4px 10px; border: 1px solid var(--linha); border-radius: 999px; }
+
+/* Ficha técnica nas linhas e bloco de tecidos */
+.ficha { margin-top: 14px; font-size: .92rem; color: var(--tinta-2); }
+.tecidos { margin-top: 56px; padding: 28px 32px; background: var(--papel); border-radius: var(--raio); border-left: 4px solid var(--fita); }
+.tecidos h3 { margin-bottom: 16px; }
+.tecidos dl { margin: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.tecidos dt { font-weight: 700; color: var(--marinho); }
+.tecidos dd { margin: 4px 0 0; color: var(--tinta-2); }
+.rodape__cnpj { font-size: .85rem; opacity: .8; margin-top: 12px; }
+@media (max-width: 760px) { .tecidos dl { grid-template-columns: 1fr; } .tecidos { padding: 22px; } }
+
+/* Páginas internas (segmentos) */
+.migalhas { max-width: var(--larg); margin: 24px auto 0; padding: 0 24px; font-size: .9rem; color: var(--tinta-2); }
+.migalhas ol { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; }
+.migalhas li + li::before { content: "/"; margin-right: 6px; color: var(--linha); }
+.migalhas a { color: var(--tinta-2); }
+.hero--interna { padding-top: 32px; }
+.resposta { font-size: 1.2rem; color: var(--tinta); max-width: 58ch; }
+.tabela-areas { width: 100%; border-collapse: collapse; margin-top: 8px; }
+.tabela-areas th, .tabela-areas td { text-align: left; vertical-align: top; padding: 16px 16px 16px 0; border-bottom: 1px solid var(--linha); }
+.tabela-areas th { font-size: .9rem; color: var(--tinta-2); font-weight: 600; border-bottom: 2px solid var(--marinho); }
+.tabela-areas td:first-child { font-weight: 700; color: var(--marinho); width: 30%; }
+.motivos { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px 48px; }
+.motivos p { color: var(--tinta-2); }
+.aviso { margin-top: 32px; padding: 18px 22px; background: var(--papel); border-left: 4px solid var(--fita); border-radius: var(--raio); }
+.aviso p { margin: 0; }
+.outros-segmentos { display: flex; flex-wrap: wrap; gap: 10px; list-style: none; padding: 0; margin: 0; }
+.outros-segmentos a { display: inline-block; padding: 10px 16px; border: 1px solid var(--linha); border-radius: 999px; text-decoration: none; font-weight: 600; }
+.outros-segmentos a:hover { border-color: var(--marinho); }
+.segmentos__lista a { text-decoration: none; color: inherit; display: flex; justify-content: space-between; }
+.segmentos__lista a::after { content: "›"; color: var(--fita); font-size: 1.4rem; line-height: 1; }
+.segmentos__lista a:hover { color: var(--fita); }
+@media (max-width: 760px) {
+  .motivos { grid-template-columns: 1fr; }
+  .migalhas { padding: 0 20px; }
+  .tabela-areas, .tabela-areas tbody, .tabela-areas tr, .tabela-areas td { display: block; width: 100% !important; }
+  .tabela-areas thead { display: none; }
+  .tabela-areas td { padding: 4px 0; border: 0; }
+  .tabela-areas tr { padding: 14px 0; border-bottom: 1px solid var(--linha); }
+}
+
+/* Blog */
+.blog-cab { max-width: var(--larg); margin: 0 auto; padding: 40px 24px 8px; }
+.blog-cab p { font-size: 1.15rem; color: var(--tinta-2); }
+.categorias { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 24px 0 0; }
+.categorias a { display: inline-block; padding: 8px 14px; border: 1px solid var(--linha); border-radius: 999px; text-decoration: none; font-weight: 600; font-size: .95rem; }
+.categorias a:hover, .categorias a[aria-current] { border-color: var(--marinho); background: var(--marinho); color: var(--branco); }
+.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; list-style: none; padding: 0; margin: 0; }
+.card { border: 1px solid var(--linha); border-radius: var(--raio); padding: 24px; display: flex; flex-direction: column; gap: 10px; background: var(--branco); }
+.card__cat { font-size: .85rem; font-weight: 700; color: var(--fita-escuro); }
+.card h3 { margin: 0; font-size: 1.25rem; }
+.card h3 a { text-decoration: none; }
+.card h3 a:hover { text-decoration: underline; text-decoration-color: var(--fita); }
+.card p { color: var(--tinta-2); font-size: .98rem; margin: 0; }
+.card time { font-size: .85rem; color: var(--tinta-2); margin-top: auto; }
+.blog-vazio { color: var(--tinta-2); }
+
+.artigo { max-width: 760px; margin: 0 auto; padding: 32px 24px 24px; }
+.artigo__cat { font-weight: 700; color: var(--fita-escuro); text-decoration: none; }
+.artigo h1 { font-size: clamp(2rem, 4vw, 3rem); margin-top: 10px; }
+.artigo__meta { color: var(--tinta-2); font-size: .95rem; margin-bottom: 24px; }
+.artigo__resumo { font-size: 1.2rem; line-height: 1.55; padding: 20px 24px; background: var(--papel); border-left: 4px solid var(--fita); border-radius: var(--raio); margin: 0 0 32px; max-width: none; }
+.artigo__corpo { font-size: 1.1rem; line-height: 1.7; }
+.artigo__corpo p, .artigo__corpo li { max-width: 68ch; }
+.artigo__corpo h2 { font-size: 1.75rem; margin-top: 48px; }
+.artigo__corpo h3 { margin-top: 32px; }
+.artigo__corpo ul, .artigo__corpo ol { padding-left: 1.3em; margin: 0 0 1em; }
+.artigo__corpo li { margin-bottom: 6px; }
+.artigo__corpo a { text-decoration-color: var(--fita-escuro); text-underline-offset: 3px; text-decoration-thickness: 2px; font-weight: 600; }
+.artigo__corpo table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 1rem; }
+.artigo__corpo th, .artigo__corpo td { text-align: left; vertical-align: top; padding: 12px 12px 12px 0; border-bottom: 1px solid var(--linha); }
+.artigo__corpo th { border-bottom: 2px solid var(--marinho); font-size: .92rem; }
+.tabela-rolagem { overflow-x: auto; }
+.artigo .faq { margin-top: 8px; }
+
+.material { margin: 40px 0; padding: 28px; background: var(--marinho); color: var(--branco); border-radius: var(--raio); }
+.material h2 { margin: 0 0 8px; font-size: 1.5rem; color: var(--branco); }
+.material > p { color: #c6cfdd; margin-bottom: 18px; }
+.material .form { padding: 0; background: none; }
+.material__ok { font-weight: 600; color: var(--fita); margin: 0; }
+
+.artigo-cta { max-width: 760px; margin: 16px auto 0; padding: 0 24px 72px; }
+.artigo-cta > div { border-top: 2px solid var(--marinho); padding-top: 28px; }
+.relacionados { max-width: var(--larg); margin: 0 auto; padding: 0 24px 96px; }
+@media (max-width: 980px) { .cards { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 760px) { .cards { grid-template-columns: 1fr; } .material { padding: 22px; } .blog-cab { padding: 28px 20px 0; } }
+
+/* Bloco de peças da home */
+.pecas-grade { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.peca { border: 1px solid var(--linha); border-radius: var(--raio); padding: 24px; background: var(--branco); }
+.peca h3 { margin-bottom: 8px; }
+.peca p { color: var(--tinta-2); font-size: .98rem; margin: 0; }
+.peca--destaque { grid-column: span 3; background: var(--papel); border-left: 4px solid var(--fita); }
+.peca--destaque h3 { font-size: 1.4rem; }
+
+/* Seção de jalecos */
+.jalecos { display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: start; }
+.lista-check { list-style: none; padding: 0; margin: 0; }
+.lista-check li { position: relative; padding: 12px 0 12px 32px; border-bottom: 1px solid var(--linha); }
+.lista-check li::before { content: ""; position: absolute; left: 4px; top: 19px; width: 12px; height: 7px; border-left: 2px solid var(--fita-escuro); border-bottom: 2px solid var(--fita-escuro); transform: rotate(-45deg); }
+
+/* Marcador de conteúdo a validar com a LF */
+.validar { background: #fff1b8; color: #6b4f00; padding: 0 4px; border-radius: 3px; font-weight: 600; }
+
+/* Bloco de planejamento (escolas) */
+.planejamento { max-width: calc(var(--larg) - 48px); margin: 0 auto 0; padding: 24px 28px; background: var(--papel); border-left: 4px solid var(--fita); border-radius: var(--raio); }
+.planejamento h2 { font-size: 1.4rem; margin-bottom: 8px; }
+.planejamento p { margin: 0; font-size: 1.1rem; }
+.secao--planejamento { padding-top: 0; }
+
+/* Política de privacidade */
+.texto-legal { max-width: 760px; margin: 0 auto; padding: 32px 24px 96px; }
+.texto-legal h2 { font-size: 1.5rem; margin-top: 40px; }
+.texto-legal p, .texto-legal li { max-width: 70ch; }
+.texto-legal ul { padding-left: 1.3em; }
+
+/* Aviso de cookies */
+.aviso-cookies { position: fixed; left: 0; right: 0; bottom: 0; z-index: 70; background: var(--marinho); color: var(--branco); padding: 14px 24px; display: flex; align-items: center; justify-content: center; gap: 16px 24px; flex-wrap: wrap; box-shadow: 0 -6px 18px -10px rgba(0,0,0,.4); }
+.aviso-cookies p { margin: 0; font-size: .95rem; max-width: 70ch; }
+.aviso-cookies a { color: var(--fita); font-weight: 600; text-underline-offset: 3px; }
+.aviso-cookies__acoes { display: flex; gap: 10px; }
+.aviso-cookies .btn--sm { min-height: 40px; }
+body.com-aviso { padding-bottom: var(--aviso-h, 0px); }
+body.com-aviso .wa-flutuante { bottom: calc(var(--aviso-h, 0px) + 16px); }
+.rodape__legal { display: flex; flex-wrap: wrap; gap: 8px 20px; }
+.rodape__legal a { color: #c6cfdd; }
+@media (max-width: 980px) {
+  .pecas-grade { grid-template-columns: 1fr 1fr; }
+  .peca--destaque { grid-column: span 2; }
+  .jalecos { grid-template-columns: 1fr; gap: 24px; }
+}
+@media (max-width: 760px) {
+  .pecas-grade { grid-template-columns: 1fr; }
+  .peca--destaque { grid-column: auto; }
+  .aviso-cookies { padding: 12px 16px; justify-content: flex-start; }
+  .aviso-cookies p { font-size: .9rem; }
+  .aviso-cookies__acoes { width: 100%; }
+  .aviso-cookies__acoes .btn { flex: 1; }
+  .planejamento { margin: 0 20px; padding: 20px; }
+}
+
+/* Segmentos */
+.segmentos { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+.segmentos p { color: #c6cfdd; font-size: 1.15rem; }
+.segmentos__lista { list-style: none; margin: 0; padding: 0; columns: 2; column-gap: 32px; }
+.segmentos__lista li { break-inside: avoid; padding: 14px 0; border-bottom: 1px dashed rgba(255,255,255,.35); font-size: 1.15rem; font-weight: 600; }
+
+/* Processo: costura tracejada ligando as etapas */
+.costura { list-style: none; counter-reset: etapa; padding: 0; margin: 0 0 80px; display: grid; grid-template-columns: repeat(5, 1fr); gap: 24px; position: relative; }
+.costura::before { content: ""; position: absolute; left: 20px; right: 20px; top: 20px; border-top: 2px dashed var(--marinho); opacity: .45; }
+.costura li { counter-increment: etapa; position: relative; padding-top: 60px; }
+.costura li::before {
+  content: counter(etapa);
+  position: absolute; top: 0; left: 0; width: 42px; height: 42px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: var(--branco); border: 2px solid var(--marinho); color: var(--marinho);
+  font-weight: 750; font-variant-numeric: tabular-nums;
+}
+.costura li:last-child::before { background: var(--fita); }
+.costura p { font-size: .98rem; color: var(--tinta-2); }
+
+.diferenciais { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 2px solid var(--marinho); }
+.diferenciais > div { padding: 24px 24px 8px 0; }
+.diferenciais > div + div { padding-left: 24px; border-left: 1px solid var(--linha); }
+.diferenciais p { color: var(--tinta-2); font-size: .98rem; }
+
+/* Clientes */
+.logos { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; }
+.logos li { background: var(--branco); border-radius: var(--raio); min-height: 76px; display: grid; place-items: center; padding: 14px; font-weight: 700; font-stretch: 85%; font-size: 1.1rem; color: var(--marinho); text-align: center; }
+
+/* Sobre */
+.sobre { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+.sobre img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--raio); background: var(--papel); }
+
+/* FAQ */
+.faq details { max-width: 820px; }
+.faq details { border-bottom: 1px solid var(--linha); }
+.faq summary { cursor: pointer; list-style: none; padding: 20px 40px 20px 0; font-weight: 650; font-size: 1.1rem; position: relative; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; position: absolute; right: 4px; top: 14px; font-size: 1.6rem; font-weight: 400; color: var(--marinho); }
+.faq details[open] summary::after { content: "–"; }
+.faq details p { color: var(--tinta-2); padding-bottom: 12px; }
+
+/* Contato / orçamento */
+.contato { display: grid; grid-template-columns: .9fr 1.1fr; gap: 64px; align-items: start; }
+.contato > div > p { color: #c6cfdd; font-size: 1.15rem; }
+.contato__dados { list-style: none; padding: 0; margin: 28px 0 0; }
+.contato__dados li { padding: 10px 0; border-top: 1px dashed rgba(255,255,255,.3); }
+.contato__dados a { font-weight: 600; text-decoration-color: var(--fita); text-underline-offset: 4px; }
+
+.form { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 20px; background: var(--marinho-2); padding: 32px; border-radius: var(--raio); }
+.campo { grid-column: 1 / -1; display: flex; flex-direction: column; gap: 6px; border: 0; padding: 0; margin: 0; }
+.campo--meia { grid-column: span 1; }
+.campo label, .campo legend { font-weight: 600; font-size: .95rem; }
+.campo legend { margin-bottom: 6px; }
+.form input:not([type=checkbox]), .form select, .form textarea {
+  font: inherit; color: var(--tinta); background: var(--branco);
+  border: 2px solid transparent; border-radius: 4px; padding: 10px 12px; min-height: 46px;
+}
+.form input:focus, .form select:focus, .form textarea:focus { outline: none; border-color: var(--fita); }
+.check { display: inline-flex; align-items: center; gap: 8px; font-weight: 500 !important; margin-right: 18px; }
+.check input { width: 18px; height: 18px; accent-color: var(--fita); }
+.form__erro { grid-column: 1 / -1; margin: 0; color: #ffd58a; font-weight: 600; }
+.form__acoes { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 12px; margin-top: 4px; }
+
+/* Rodapé */
+.rodape { background: #030a1a; color: #c6cfdd; padding: 56px 24px 28px; font-size: .95rem; }
+.rodape__in { max-width: calc(var(--larg) - 48px); margin: 0 auto; display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 40px; }
+.rodape address { font-style: normal; line-height: 1.8; }
+.rodape nav { display: flex; flex-direction: column; gap: 8px; }
+.rodape a { color: #e6ebf2; text-underline-offset: 3px; }
+.rodape__fim { max-width: calc(var(--larg) - 48px); margin: 40px auto 0; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.12); font-size: .85rem; }
+
+/* WhatsApp flutuante */
+.wa-flutuante { position: fixed; right: 20px; bottom: 20px; z-index: 60; width: 58px; height: 58px; border-radius: 50%; display: grid; place-items: center; background: #1fa855; color: #fff; box-shadow: 0 8px 20px -6px rgba(0,0,0,.35); }
+.wa-flutuante:hover { background: #178a45; }
+
+/* Imagem ausente (antes de copiar /public/images): mantém o espaço sem quebrar o layout */
+img.sem-img { visibility: hidden; }
+
+/* Responsivo */
+@media (max-width: 980px) {
+  .hero, .segmentos, .sobre, .contato { grid-template-columns: 1fr; gap: 40px; }
+  .hero { padding-top: 40px; }
+  .etiqueta { left: 12px; }
+  .linhas { grid-template-columns: 1fr 1fr; }
+  .costura { grid-template-columns: 1fr; gap: 0; }
+  .costura::before { left: 20px; right: auto; top: 20px; bottom: 20px; border-top: 0; border-left: 2px dashed var(--marinho); }
+  .costura li { padding: 0 0 28px 64px; }
+  .diferenciais { grid-template-columns: 1fr 1fr; }
+  .diferenciais > div:nth-child(3) { border-left: 0; padding-left: 0; }
+  .logos { grid-template-columns: repeat(4, 1fr); }
+  .fita__dados { grid-template-columns: 1fr 1fr; }
+  .rodape__in { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 760px) {
+  .marca img { height: 44px; width: 44px; }
+  .menu-btn { display: inline-block; }
+  .nav { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--branco); flex-direction: column; align-items: stretch; gap: 0; padding: 8px 24px 20px; border-bottom: 1px solid var(--linha); }
+  .nav.aberto { display: flex; }
+  .nav a:not(.btn) { padding: 12px 0; border-bottom: 1px solid var(--linha); }
+  .nav .btn { margin-top: 14px; }
+  .secao { padding: 64px 20px; }
+  .linhas { grid-template-columns: 1fr; }
+  .segmentos__lista { columns: 1; }
+  .diferenciais { grid-template-columns: 1fr; }
+  .diferenciais > div, .diferenciais > div + div { border-left: 0; padding-left: 0; border-bottom: 1px solid var(--linha); }
+  .logos { grid-template-columns: repeat(3, 1fr); }
+  .form { grid-template-columns: 1fr; padding: 22px; }
+  .campo--meia { grid-column: 1 / -1; }
+  .rodape__in { grid-template-columns: 1fr; }
+}
+
+  </style>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PGRMXWQ" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+  <header class="topo">
+    <div class="topo__in">
+      <a href="/" class="marca" aria-label="LF Uniformes, página inicial">
+        <img src="/img/logo.png" alt="" width="52" height="52">
+        <span class="marca__nome"><strong>LF Uniformes</strong><span>Uniformes executivos</span></span>
+      </a>
+      <button class="menu-btn" aria-expanded="false" aria-controls="menu">Menu</button>
+      <nav id="menu" class="nav" aria-label="Principal">
+        <a href="/#linhas">Uniformes</a>
+        <a href="/#segmentos">Segmentos</a>
+        <a href="/#como-trabalhamos">Como trabalhamos</a>
+        <a href="/#clientes">Clientes</a>
+        <a href="/#sobre">Sobre</a>
+        <a href="#orcamento" class="btn btn--sm">Pedir orçamento</a>
+      </nav>
+    </div>
+  </header>
+
+  <nav class="migalhas" aria-label="Você está em">
+    <ol><li><a href="/">Início</a></li><li aria-current="page">Política de Privacidade</li></ol>
+  </nav>
+
+  <main id="conteudo">
+
+    <article class="texto-legal">
+      <h1>Política de Privacidade e Cookies</h1>
+      <p>Esta política explica quais dados a LF Uniformes trata quando você visita o site lfuniformes.com.br, para que eles servem e como você pode mudar suas escolhas. Última atualização: 9 de novembro de 2026.</p>
+
+      <h2>Quem é responsável pelos dados</h2>
+      <p>LF Uniformes Executivos LTDA, CNPJ 66.939.750/0001-31, R. Luiz França, 1588, Cajuru, Curitiba, PR, 82940-090. Contato: comercial@lfuniformes.com.br ou (41) 3653-9065.</p>
+      <p>Encarregado pelo tratamento de dados pessoais (DPO): <mark class="validar">[VALIDAR COM A LF]</mark></p>
+
+      <h2>Quais dados tratamos</h2>
+      <ul>
+        <li><strong>Pedido de orçamento:</strong> nome, empresa, cidade, número de colaboradores, peças de interesse e a mensagem que você escrever. Esses dados não ficam guardados no site: são enviados pelo WhatsApp para a nossa equipe comercial quando você confirma o envio.</li>
+        <li><strong>Origem da visita:</strong> quando você chega por um anúncio ou link de campanha, guardamos no seu navegador, por até 90 dias, a campanha, a palavra-chave e o identificador do clique (por exemplo, gclid). Isso nos ajuda a saber quais anúncios trazem pedidos de orçamento. Esses dados não identificam você pelo nome.</li>
+        <li><strong>Cookies de análise e de anúncios:</strong> usados pelo Google Analytics, Google Ads e Meta (Facebook e Instagram) para medir visitas e o resultado das campanhas. Só são ativados se você clicar em "Aceitar" no aviso de cookies.</li>
+        <li><strong>Sua escolha sobre cookies:</strong> guardada no seu navegador por 12 meses, para não perguntarmos de novo a cada visita.</li>
+      </ul>
+
+      <h2>Para que usamos os dados</h2>
+      <ul>
+        <li>Responder ao seu pedido de orçamento e conversar sobre uniformes.</li>
+        <li>Entender como o site é usado e melhorar o conteúdo.</li>
+        <li>Medir o resultado dos nossos anúncios e mostrá-los a pessoas com mais chance de interesse, quando você aceita os cookies de anúncios.</li>
+      </ul>
+      <p>Bases legais: consentimento, para os cookies de análise e de anúncios; procedimentos preliminares a um contrato, para responder ao pedido de orçamento; e legítimo interesse, para a origem da visita. <mark class="validar">[VALIDAR COM A LF]</mark></p>
+
+      <h2>Com quem compartilhamos</h2>
+      <p>Com fornecedores que operam as ferramentas do site e do atendimento: Google (Analytics, Ads e Tag Manager), Meta (WhatsApp, Facebook e Instagram) e a empresa de hospedagem do site. Não vendemos dados pessoais. Alguns desses fornecedores podem armazenar dados fora do Brasil, conforme as próprias políticas. <mark class="validar">[VALIDAR COM A LF]</mark></p>
+
+      <h2>Por quanto tempo guardamos</h2>
+      <p>A origem da visita fica no seu navegador por até 90 dias e a escolha sobre cookies por 12 meses. As conversas de orçamento ficam guardadas pelo tempo necessário ao atendimento e às obrigações legais. <mark class="validar">[VALIDAR COM A LF]</mark></p>
+
+      <h2>Seus direitos</h2>
+      <p>Pela Lei Geral de Proteção de Dados (Lei 13.709/2018), você pode pedir a confirmação do tratamento, o acesso, a correção, a exclusão ou a portabilidade dos seus dados, além de revogar o consentimento a qualquer momento. Para isso, escreva para comercial@lfuniformes.com.br. <mark class="validar">[VALIDAR COM A LF]</mark></p>
+
+      <h2>Como mudar sua escolha sobre cookies</h2>
+      <p>Clique em <a href="#" data-reabrir-cookies>Preferências de cookies</a> para ver o aviso de novo e escolher entre aceitar ou recusar. Você também pode apagar os cookies nas configurações do seu navegador.</p>
+    </article>
+
+  </main>
+
+  <footer class="rodape">
+    <div class="rodape__in">
+      <div>
+        <img class="rodape__logo" src="/img/logo.png" alt="LF Uniformes" width="64" height="64" loading="lazy">
+        <p>Uniformes executivos e profissionais para empresas.</p>
+        <p class="rodape__cnpj">LF Uniformes Executivos LTDA<br>CNPJ 66.939.750/0001-31</p>
+      </div>
+      <address>
+        LF Uniformes<br>
+        R. Luiz França, 1588, Cajuru<br>
+        Curitiba, PR, 82940-090<br>
+        Seg. a sex., 8h às 18h<br>
+        <a href="tel:+554136539065">(41) 3653-9065</a><br>
+        <a href="https://wa.me/5541991697834" target="_blank" rel="noopener" data-wa="rodape">WhatsApp (41) 99169-7834</a><br>
+        <a href="mailto:comercial@lfuniformes.com.br">comercial@lfuniformes.com.br</a>
+      </address>
+      <nav aria-label="Rodapé">
+        <a href="/">Página inicial</a>
+        <a href="/uniformes-para-hospitais/">Uniformes para hospitais</a>
+        <a href="/uniformes-para-clinicas/">Uniformes para clínicas</a>
+        <a href="/uniformes-para-escolas/">Uniformes para escolas</a>
+        <a href="/#perguntas">Perguntas frequentes</a>
+        <a href="/privacidade/">Política de Privacidade</a>
+        <a href="#" data-reabrir-cookies>Preferências de cookies</a>
+      </nav>
+    </div>
+    <p class="rodape__fim">© <span id="ano">2026</span> LF Uniformes. Todos os direitos reservados.</p>
+  </footer>
+
+  <script>
+// LF Uniformes — scripts do site
+(function () {
+  var WHATSAPP = '5541991697834';
+  var DIA = 24 * 60 * 60 * 1000;
+  var CHAVE_ORIGEM = 'lf_origem';
+  var CHAVE_CONSENTIMENTO = 'lf_consentimento';
+  var CAMPOS_ORIGEM = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid', 'gbraid', 'wbraid'];
+
+  // ---------------------------------------------------------------------------
+  // Utilidades
+  // ---------------------------------------------------------------------------
+  function lerStorage(chave) {
+    try { return JSON.parse(window.localStorage.getItem(chave) || 'null'); } catch (e) { return null; }
+  }
+  function gravarStorage(chave, valor) {
+    try { window.localStorage.setItem(chave, JSON.stringify(valor)); } catch (e) {}
+  }
+  function apagarStorage(chave) {
+    try { window.localStorage.removeItem(chave); } catch (e) {}
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  if (typeof window.gtag !== 'function') {
+    window.gtag = function () { window.dataLayer.push(arguments); };
+  }
+  function evento(nome, dados) {
+    window.dataLayer.push(Object.assign({ event: nome }, dados || {}));
+  }
+
+  // Código curto do lead: LF-XXXXX (5 caracteres A-Z e 0-9)
+  function gerarLeadId() {
+    var letras = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789', cod = '';
+    var aleatorio = new Uint8Array(5);
+    if (window.crypto && window.crypto.getRandomValues) {
+      window.crypto.getRandomValues(aleatorio);
+    } else {
+      for (var i = 0; i < 5; i++) aleatorio[i] = Math.floor(Math.random() * 256);
+    }
+    for (var j = 0; j < 5; j++) cod += letras.charAt(aleatorio[j] % letras.length);
+    return 'LF-' + cod;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Origem da visita (UTMs + clique do Google), validade de 90 dias,
+  // regra de último clique pago: só sobrescreve quando a visita chega COM utm ou gclid.
+  // ---------------------------------------------------------------------------
+  (function capturarOrigem() {
+    var params = new URLSearchParams(window.location.search);
+    var nova = {}, temParametro = false;
+    CAMPOS_ORIGEM.forEach(function (c) {
+      var v = params.get(c);
+      if (v) { nova[c] = v.slice(0, 200); temParametro = true; }
+    });
+    if (temParametro) {
+      // Anúncio do Google com marcação automática e sem UTM: identifica como google/cpc
+      if (!nova.utm_source && (nova.gclid || nova.gbraid || nova.wbraid)) {
+        nova.utm_source = 'google';
+        nova.utm_medium = nova.utm_medium || 'cpc';
+      }
+      nova.pagina_entrada = window.location.pathname;
+      nova.capturado_em = Date.now();
+      nova.expira_em = Date.now() + 90 * DIA;
+      gravarStorage(CHAVE_ORIGEM, nova);
+      return;
+    }
+    var salva = lerStorage(CHAVE_ORIGEM);
+    if (salva && (!salva.expira_em || salva.expira_em < Date.now())) apagarStorage(CHAVE_ORIGEM);
+  })();
+
+  function origemSalva() {
+    var o = lerStorage(CHAVE_ORIGEM);
+    if (!o || !o.expira_em || o.expira_em < Date.now()) return null;
+    return o;
+  }
+
+  // Campos de origem para o dataLayer (sempre presentes, vazios quando não há origem)
+  function camposOrigem() {
+    var o = origemSalva() || {};
+    return {
+      utm_source: o.utm_source || '',
+      utm_medium: o.utm_medium || '',
+      utm_campaign: o.utm_campaign || '',
+      utm_term: o.utm_term || '',
+      utm_content: o.utm_content || '',
+      gclid: o.gclid || '',
+      gbraid: o.gbraid || '',
+      wbraid: o.wbraid || ''
+    };
+  }
+
+  // Linha discreta no fim da mensagem do WhatsApp
+  function linhaRastreio(leadId) {
+    var o = origemSalva();
+    if (!o || !o.utm_source) return 'Cód: ' + leadId + ' | Origem: direto/orgânico';
+    return 'Cód: ' + leadId +
+      ' | Origem: ' + o.utm_source + '/' + (o.utm_medium || '-') +
+      ' | Campanha: ' + (o.utm_campaign || '-') +
+      ' | Termo: ' + (o.utm_term || '-');
+  }
+
+  function abrirWhatsApp(texto) {
+    window.open('https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(texto), '_blank', 'noopener');
+  }
+
+  // ---------------------------------------------------------------------------
+  // Ano do rodapé e menu mobile
+  // ---------------------------------------------------------------------------
+  var ano = document.getElementById('ano');
+  if (ano) ano.textContent = new Date().getFullYear();
+
+  var btn = document.querySelector('.menu-btn');
+  var nav = document.getElementById('menu');
+  if (btn && nav) {
+    btn.addEventListener('click', function () {
+      var aberto = nav.classList.toggle('aberto');
+      btn.setAttribute('aria-expanded', aberto ? 'true' : 'false');
+    });
+    nav.addEventListener('click', function (e) {
+      if (e.target.tagName === 'A') { nav.classList.remove('aberto'); btn.setAttribute('aria-expanded', 'false'); }
+    });
+  }
+
+  // ---------------------------------------------------------------------------
+  // Imagens: tenta variações comuns de nome/extensão antes de esconder o espaço
+  // ---------------------------------------------------------------------------
+  function variacoes(src) {
+    var m = src.match(/^(.*\/)([^\/]+?)\.(\w+)$/);
+    if (!m) return [];
+    var pasta = m[1], nome = m[2], lista = [];
+    var nomes = [nome, nome.charAt(0).toUpperCase() + nome.slice(1), nome.toUpperCase()];
+    if (nome === 'confeccao') nomes.push('confecção', 'Confecção', 'confecçao');
+    ['jpg', 'jpeg', 'png', 'webp', 'JPG', 'JPEG', 'PNG'].forEach(function (ext) {
+      nomes.forEach(function (n) { lista.push(pasta + n + '.' + ext); });
+    });
+    return lista.filter(function (u) { return u !== src; });
+  }
+  function tentarProxima(img) {
+    if (!img._fila) img._fila = variacoes(img.getAttribute('src'));
+    var prox = img._fila.shift();
+    if (prox) { img.src = prox; } else { img.classList.add('sem-img'); }
+  }
+  document.querySelectorAll('img').forEach(function (img) {
+    img.addEventListener('error', function () { tentarProxima(img); });
+    if (img.complete && img.naturalWidth === 0 && img.getAttribute('loading') !== 'lazy') tentarProxima(img);
+  });
+
+  // ---------------------------------------------------------------------------
+  // Cliques no WhatsApp: gera o código do lead, acrescenta a linha de rastreio
+  // na mensagem e envia o evento clique_whatsapp
+  // ---------------------------------------------------------------------------
+  document.querySelectorAll('a[href*="wa.me/"]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      var leadId = gerarLeadId();
+      try {
+        var url = new URL(a.getAttribute('href'), window.location.href);
+        var base = url.searchParams.get('text') || 'Oi, vim pelo site! Gostaria de falar com um consultor.';
+        base = base.split('\n\nCód: ')[0];
+        // monta com encodeURIComponent (%20 para espaços), formato que o WhatsApp sempre entende
+        a.setAttribute('href', url.origin + url.pathname + '?text=' + encodeURIComponent(base + '\n\n' + linhaRastreio(leadId)));
+      } catch (e) {}
+      evento('clique_whatsapp', Object.assign({
+        posicao: a.getAttribute('data-wa') || 'link',
+        lead_id: leadId
+      }, camposOrigem()));
+    });
+  });
+
+  // ---------------------------------------------------------------------------
+  // Formulários de materiais (blog): webhook (n8n/CRM), se configurado, ou WhatsApp
+  // ---------------------------------------------------------------------------
+  var LEAD_WEBHOOK = ''; // ex.: 'https://seu-n8n/webhook/lf-leads'
+  document.querySelectorAll('form.form-material').forEach(function (fm) {
+    fm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var d = new FormData(fm);
+      var nome = (d.get('nome') || '').trim(), empresa = (d.get('empresa') || '').trim(), zap = (d.get('whatsapp') || '').trim();
+      var err = fm.querySelector('.form__erro');
+      if (!nome || !empresa || zap.replace(/\D/g, '').length < 10) {
+        err.textContent = 'Preencha nome, empresa e um WhatsApp com DDD para receber o material.';
+        err.hidden = false;
+        return;
+      }
+      err.hidden = true;
+      var leadId = gerarLeadId();
+      var dados = Object.assign({
+        lead_id: leadId, nome: nome, empresa: empresa, whatsapp: zap, email: (d.get('email') || '').trim(),
+        material: fm.getAttribute('data-material'), material_titulo: fm.getAttribute('data-material-titulo'),
+        artigo: window.location.pathname
+      }, camposOrigem());
+      // dataLayer sem dados pessoais
+      evento('download_material', Object.assign({ material: dados.material, artigo: dados.artigo, lead_id: leadId }, camposOrigem()));
+      var texto = 'Oi, vim pelo blog da LF! Quero receber o material: ' + dados.material_titulo + '.\n\nNome: ' + nome +
+        '\nEmpresa: ' + empresa + (dados.email ? '\nE-mail: ' + dados.email : '') + '\nArtigo: ' + window.location.pathname +
+        '\n\n' + linhaRastreio(leadId);
+      function concluir() {
+        fm.innerHTML = '<p class="material__ok" role="status">Pronto! Vamos enviar o material no seu WhatsApp.</p>';
+      }
+      if (LEAD_WEBHOOK) {
+        fetch(LEAD_WEBHOOK, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(dados) })
+          .then(concluir)
+          .catch(function () { abrirWhatsApp(texto); concluir(); });
+      } else {
+        abrirWhatsApp(texto);
+        concluir();
+      }
+    });
+  });
+
+  // ---------------------------------------------------------------------------
+  // Aviso de cookies (LGPD) + Consent Mode do Google
+  // O padrão "denied" é definido no <head>, antes do GTM carregar.
+  // ---------------------------------------------------------------------------
+  function aplicarConsentimento(valor) {
+    var estado = valor === 'granted' ? 'granted' : 'denied';
+    window.gtag('consent', 'update', {
+      ad_storage: estado,
+      ad_user_data: estado,
+      ad_personalization: estado,
+      analytics_storage: estado
+    });
+    gravarStorage(CHAVE_CONSENTIMENTO, { valor: estado, salvo_em: Date.now(), expira_em: Date.now() + 365 * DIA });
+    evento('consentimento_atualizado', { consentimento: estado });
+  }
+
+  (function avisoCookies() {
+    var salvo = lerStorage(CHAVE_CONSENTIMENTO);
+    if (salvo && salvo.expira_em && salvo.expira_em > Date.now()) return;
+
+    var aviso = document.createElement('div');
+    aviso.className = 'aviso-cookies';
+    aviso.setAttribute('role', 'region');
+    aviso.setAttribute('aria-label', 'Aviso de cookies');
+    aviso.innerHTML =
+      '<p>Usamos cookies para medir as visitas e melhorar nossos anúncios. Você pode aceitar ou recusar. ' +
+      '<a href="/privacidade/">Política de Privacidade</a></p>' +
+      '<div class="aviso-cookies__acoes">' +
+      '<button type="button" class="btn btn--sm btn--linha-clara" data-consentimento="denied">Recusar</button>' +
+      '<button type="button" class="btn btn--sm btn--claro" data-consentimento="granted">Aceitar</button>' +
+      '</div>';
+    document.body.appendChild(aviso);
+    document.body.classList.add('com-aviso');
+
+    // Reserva espaço no fim da página e sobe o botão do WhatsApp para o aviso não cobrir nada
+    function ajustarAltura() {
+      document.documentElement.style.setProperty('--aviso-h', aviso.offsetHeight + 'px');
+    }
+    ajustarAltura();
+    window.addEventListener('resize', ajustarAltura);
+
+    aviso.addEventListener('click', function (e) {
+      var escolha = e.target.getAttribute && e.target.getAttribute('data-consentimento');
+      if (!escolha) return;
+      aplicarConsentimento(escolha);
+      aviso.remove();
+      document.body.classList.remove('com-aviso');
+      document.documentElement.style.removeProperty('--aviso-h');
+      window.removeEventListener('resize', ajustarAltura);
+    });
+  })();
+
+  // Link "Preferências de cookies" (rodapé e página de privacidade): reabre a escolha
+  document.querySelectorAll('[data-reabrir-cookies]').forEach(function (el) {
+    el.addEventListener('click', function (e) {
+      e.preventDefault();
+      apagarStorage(CHAVE_CONSENTIMENTO);
+      window.location.reload();
+    });
+  });
+
+  // ---------------------------------------------------------------------------
+  // Formulário de orçamento: monta a mensagem e abre o WhatsApp
+  // ---------------------------------------------------------------------------
+  var form = document.getElementById('form-orcamento');
+  if (!form) return;
+  var erro = document.getElementById('form-erro');
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var d = new FormData(form);
+    var nome = (d.get('nome') || '').trim();
+    var empresa = (d.get('empresa') || '').trim();
+    if (!nome || !empresa) {
+      erro.textContent = 'Preencha seu nome e o nome da empresa para enviarmos o pedido.';
+      erro.hidden = false;
+      (nome ? form.empresa : form.nome).focus();
+      return;
+    }
+    erro.hidden = true;
+
+    var leadId = gerarLeadId();
+    var segmento = form.getAttribute('data-segmento') || 'home';
+    var segmentoNome = form.getAttribute('data-segmento-nome') || '';
+    var marcados = d.getAll('linha');
+    var legenda = form.querySelector('fieldset legend');
+    var rotuloMarcados = legenda ? legenda.textContent.trim() : 'Linhas de interesse';
+
+    var texto = [
+      'Oi, vim pelo site! Gostaria de solicitar um orçamento.',
+      '',
+      segmentoNome ? 'Segmento: ' + segmentoNome : '',
+      'Nome: ' + nome,
+      'Empresa: ' + empresa,
+      d.get('cidade') ? 'Cidade: ' + d.get('cidade') : '',
+      d.get('qtd') ? 'Colaboradores: ' + d.get('qtd') : '',
+      marcados.length ? rotuloMarcados + ': ' + marcados.join(', ') : '',
+      d.get('mensagem') ? 'Mensagem: ' + d.get('mensagem') : ''
+    ].filter(function (l, i) { return l !== '' || i === 1; }).join('\n') + '\n\n' + linhaRastreio(leadId);
+
+    // dataLayer sem nome, telefone ou e-mail
+    evento('envio_orcamento', Object.assign({
+      canal: 'whatsapp',
+      colaboradores: d.get('qtd') || '',
+      segmento: segmento,
+      lead_id: leadId
+    }, camposOrigem()));
+
+    abrirWhatsApp(texto);
+  });
+})();
+
+  </script>
+</body>
+</html>
